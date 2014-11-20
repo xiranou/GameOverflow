@@ -1,5 +1,14 @@
 source 'https://rubygems.org'
 
+group :development, :test do
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'rspec-rails', '~> 3.1.0'
+end
+
+group :test do
+  gem 'capybara', '~> 2.4.3'
+  gem 'launchy', '~> 2.4.2'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'

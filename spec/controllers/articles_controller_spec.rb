@@ -93,8 +93,18 @@ describe ArticlesController do
 	end
 
 	describe 'Delete#destroy' do
-		it "should destroy requested article/delete from database"
-		it "should redirect back to articles#index"
+		before :each do
+			@article = create(:article)
+		end
+
+		it "should destroy requested article/delete from database" do
+			expect(delete :destroy, id: @article).to change(Article, :count).by(-1)
+		end
+
+		it "should redirect back to articles#index" do
+			delete :destroy, id: @article
+			expect(response).to redirect_to :index
+		end
 	end
 
 end

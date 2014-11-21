@@ -75,7 +75,7 @@ describe ArticlesController do
 
 		it "should assign new article to variable @article" do
 			get :new
-			expect(assigns(:article)).to create_a_new(Article)
+			expect(assigns(:article)).to be_a_new(Article)
 		end
 	end
 

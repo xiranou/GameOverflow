@@ -5,12 +5,8 @@ describe Article do
     article = create(:article)
     expect(article).to be_valid
   end
-  it "should be invalid if it does not have a title." do
-    article = create(:notitle_article)
-    expect(article).to be_invalid
-  end
-  it "should be invalid if it does not have content." do
-    article = create(:nocontent_article)
-    expect(article).to be_invalid
-  end
+
+  it { should validate_presence_of :title }
+
+  it { should validate_presence_of :content }
 end

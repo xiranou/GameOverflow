@@ -8,6 +8,7 @@ end
 group :test do
   gem 'capybara', '~> 2.4.3'
   gem 'launchy', '~> 2.4.2'
+  gem 'shoulda-matchers', require: false
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

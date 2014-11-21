@@ -80,8 +80,16 @@ describe ArticlesController do
 	end
 
 	describe 'Post#create' do
-		it "should save the new article to the database"
-		it "should redirect back to the new article(show)"
+		it "should save the new article to the database" do
+			post :create, article: attrutes_for(:article)
+			expect(response).to change(Article, :count).by(1)
+
+		end
+
+		it "should redirect back to the new article(show)" do
+			post :create, article: attrutes_for(:article)
+			expect(response).to redirect_to article_path(assigns[:article])
+		end
 	end
 
 	describe 'Delete#destroy' do

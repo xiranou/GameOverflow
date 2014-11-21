@@ -48,7 +48,7 @@ describe CommentsController do
     end
     it "should locate the requested comment" do
       get :edit, id: @comment
-      expect(assigns[:comment]).to eq(comment)
+      expect(assigns[:comment]).to eq(@comment)
     end
 
     it "should render :edit for comments views" do

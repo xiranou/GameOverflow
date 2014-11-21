@@ -112,7 +112,7 @@ describe CommentsController do
 
       it "should re-render #edit for comments views" do
         put :update, id: @comment, comment: attributes_for(:comment, text: nil)
-        expect(resposne).to render_template(:edit)
+        expect(response).to render_template(:edit)
       end
     end
   end

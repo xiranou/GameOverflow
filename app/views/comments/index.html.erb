@@ -1,0 +1,10 @@
+<div class="comments">
+  <ul>
+  <% @comments.each do |comment| %>
+    <%= render partial: "show", locals:{comment: comment} %>
+  <% end %>
+  </ul>
+</div>
+<div class="new-comment">
+  <%= link_to "New Comment", new_comment_path %>
+</div>

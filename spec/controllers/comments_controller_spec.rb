@@ -25,9 +25,9 @@ describe CommentsController do
       expect(assigns[:comment]).to eq(@comment)
     end
 
-    it "should render :show template for comments views" do
+    it "should render :_show template for comments views" do
       get :show, id: @comment
-      expect(response).to render_template(:show)
+      expect(response).to render_template(:_show)
     end
   end
 
@@ -48,7 +48,7 @@ describe CommentsController do
     end
     it "should locate the requested comment" do
       get :edit, id: @comment
-      expect(assigns[:comment]).to eq(comment)
+      expect(assigns[:comment]).to eq(@comment)
     end
 
     it "should render :edit for comments views" do
@@ -71,12 +71,12 @@ describe CommentsController do
 
     context 'invalid comments' do
       it "should not save the comment into the database" do
-        expect { post :create, comment: attributes_for(:invalid_comment) }.to_not change(Comment, :count)
+        expect { post :create, comment: attributes_for(:comment, text: nil) }.to_not change(Comment, :count)
       end
 
       it "should re-render comments#new" do
-        post :create, comments: attributes_for(:invalid_comment)
-        expect(resposne).to render_template(:new)
+        post :create, comment: attributes_for(:comment, text: nil)
+        expect(response).to render_template(:new)
       end
     end
   end
@@ -105,14 +105,14 @@ describe CommentsController do
 
     context 'with invalid attributes' do
       it "should not updates the attributes" do
-        put :update, id: @comment, comment: attributes_for(:invalid_comment)
+        put :update, id: @comment, comment: attributes_for(:comment, text: nil)
         @comment.reload
         expect(@comment.text).to_not eq(nil)
       end
 
       it "should re-render #edit for comments views" do
-        put :update, id: @comment, comment: attributes_for(:invalid_comment)
-        expect(resposne).to render_template(:edit)
+        put :update, id: @comment, comment: attributes_for(:comment, text: nil)
+        expect(response).to render_template(:edit)
       end
     end
   end

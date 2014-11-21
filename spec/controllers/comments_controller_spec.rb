@@ -3,6 +3,13 @@ require "rails_helper"
 describe CommentsController do
 
   describe "Get#index" do
+    it "should locate an array of comments form Comment" do
+      comment_one = create(:comment)
+      comment_two = create(:comment)
+      get :index
+      expect(assigns[:comments]).to match_array([comment_one, comment_two])
+    end
+
     it "should render :index for comments views" do
       get :index
       expect(response).to render_template(:index)

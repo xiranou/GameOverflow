@@ -80,15 +80,26 @@ describe ArticlesController do
 	end
 
 	describe 'Post#create' do
-		it "should save the new article to the database" do
-			post :create, article: attrutes_for(:article)
-			expect(response).to change(Article, :count).by(1)
 
+		context 'valid articles' do
+			it "should save the new article to the database" do
+				expect{post :create, article: attrutes_for(:article)}.to change(Article, :count).by(1)
+			end
+
+			it "should redirect back to the new article(show)" do
+				post :create, article: attrutes_for(:article)
+				expect(response).to redirect_to article_path(assigns[:article])
+			end
 		end
+		context 'invalid articles' do
+			it "should not save the new article to the database" do
+				expect{post :create, article: attrutes_for(:invalid_article)}.to_not change(Article, :count)
+			end
 
-		it "should redirect back to the new article(show)" do
-			post :create, article: attrutes_for(:article)
-			expect(response).to redirect_to article_path(assigns[:article])
+			it "should re-render the new form " do
+				post :create, article: attrutes_for(:invalid_article)
+				expect(response).to render_template :new
+			end
 		end
 	end
 
@@ -98,7 +109,7 @@ describe ArticlesController do
 		end
 
 		it "should destroy requested article/delete from database" do
-			expect(delete :destroy, id: @article).to change(Article, :count).by(-1)
+			expect{delete :destroy, id: @article}.to change(Article, :count).by(-1)
 		end
 
 		it "should redirect back to articles#index" do

@@ -48,20 +48,41 @@ describe ArticlesController do
 	end
 
 	describe 'Put#update' do
-		before :each do
-			@article = create(:article)
+
+		context 'Valid update' do
+
+			before :each do
+				@article = create(:article)
+			end
+			it "should update valid attributes for requested article" do
+				put :update, id: @article, article: attrutes_for(:article, title:'changing title', content:'changing content')
+				@article.reload
+				expect(@article.title).to eq('changing title')
+				expect(@article.content).to eq('changing content')
+			end
+
+			it "should redirect back to the updated article" do
+				put :update, id: @article, article: attrutes_for(:article)
+				expect(response).to redirect_to @article
+			end
 		end
 
-		it "should update valid attributes for requested article" do
-			put :update, id: @article, article: attrutes_for(:article, title:'changing title', content:'changing content')
-			@article.reload
-			expect(@article.title).to eq('changing title')
-			expect(@article.content).to eq('changing content')
-		end
+		context 'Invalid update' do
+			before :each do
+				@article = create(:article)
+			end
 
-		it "should redirect back to the updated article" do
-			put :update, id: @article, article: attrutes_for(:article)
-			expect(response).to redirect_to @article
+			it "should not update invalid attributes for requested article" do
+				put :update, id: @article, article: attrutes_for(:invalid_article, title:nil, content:'changing content')
+				@article.reload
+				expect(@article.title).to eq("I LUV GAMES")
+				expect(@article.content).to_not eq('changing content')
+			end
+
+			it "should re-render the edit form" do
+				put :update, id: @article, article: attrutes_for(:article)
+				expect(response).to render_template :edit
+			end
 		end
 	end
 

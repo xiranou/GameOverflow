@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe CommentsController do
+
   describe "Get#index" do
     it "should render :index for comments views" do
       get :index
@@ -48,4 +49,29 @@ describe CommentsController do
       expect(response).to render_template(:edit)
     end
   end
+
+  describe "Post#create" do
+    context 'valid comments' do
+      it "should save the new comment into the database" do
+        expect { post :create, comment: attributes_for(:comment) }.to change(Comment, :count).by(1)
+      end
+
+      it "redirects to comments#show" do
+        post :create, comment: attributes_for(:comment)
+        expect(response).to redirect_to(comment_path(assigns[:comment]))
+      end
+    end
+
+    context 'invalid comments' do
+      it "should not save the comment into the database" do
+        expect { post :create, comment: attributes_for(:invalid_comment) }.to_not change(Comment, :count)
+      end
+
+      it "should re-render comments#new" do
+        post :create, comments: attributes_for(:invalid_comment)
+        expect(resposne).to render_template(:new)
+      end
+    end
+  end
+
 end

@@ -33,8 +33,18 @@ describe ArticlesController do
 	end
 
 	describe 'Get#edit' do
-		it "should render the template for the edit form."
-		it "should assign requested article to @article"
+		it "should render the template for the edit form." do
+			article = create(:article)
+			get :show, id: article
+			expect(response).to render_template :edit
+		end
+
+		it "should assign requested article to @article" do
+			article = create(:article)
+			get :show, id: article
+			expect(assigns(:article)).to eq article
+		end
+
 	end
 
 	describe 'Put#update' do

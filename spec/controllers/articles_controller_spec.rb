@@ -135,7 +135,7 @@ describe ArticlesController do
 
 		it "should redirect back to articles#index" do
 			delete :destroy, id: @article
-			expect(response).to redirect_to :index
+			expect(response).to redirect_to(articles_path)
 		end
 	end
 

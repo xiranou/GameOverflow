@@ -110,4 +110,17 @@ describe CommentsController do
     end
   end
 
+  describe "Delete#destroy" do
+    before :each do
+      @comment = create(:comment)
+    end
+    it "delete requested comment from database" do
+      expect { delete :destroy, id: @comment }.to change(Comment, :count).by(1)
+    end
+    it "redirects to #index for comments views" do
+      delete :destroy, id: @comment
+      expect(response).to redirect_to(comments_path)
+    end
+  end
+
 end

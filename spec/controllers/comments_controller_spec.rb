@@ -18,15 +18,15 @@ describe CommentsController do
 
   describe "Get#show" do
     before do
-      comment = create(:comment)
+      @comment = create(:comment)
     end
     it "should locate the requested comment" do
-      get :show, id: comment
-      expect(assigns[:comment]).to eq(comment)
+      get :show, id: @comment
+      expect(assigns[:comment]).to eq(@comment)
     end
 
     it "should render :show template for comments views" do
-      get :show, id: comment
+      get :show, id: @comment
       expect(response).to render_template(:show)
     end
   end
@@ -44,15 +44,15 @@ describe CommentsController do
 
   describe "Get#edit" do
     before do
-      comment = create(:comment)
+      @comment = create(:comment)
     end
     it "should locate the requested comment" do
-      get :edit, id: comment
+      get :edit, id: @comment
       expect(assigns[:comment]).to eq(comment)
     end
 
     it "should render :edit for comments views" do
-      get :edit, id: comment
+      get :edit, id: @comment
       expect(response).to render_template(:edit)
     end
   end
@@ -105,13 +105,13 @@ describe CommentsController do
 
     context 'with invalid attributes' do
       it "should not updates the attributes" do
-        put :update, id: @comment, comment: attributes_for(:invalid_comment, text: "New test")
+        put :update, id: @comment, comment: attributes_for(:invalid_comment)
         @comment.reload
-        expect(@comment.text).to_not eq("New test")
+        expect(@comment.text).to_not eq(nil)
       end
 
       it "should re-render #edit for comments views" do
-        put :update, id: @comment, comment: attributes_for(:invalid_comment, text: "New test")
+        put :update, id: @comment, comment: attributes_for(:invalid_comment)
         expect(resposne).to render_template(:edit)
       end
     end
@@ -122,7 +122,7 @@ describe CommentsController do
       @comment = create(:comment)
     end
     it "delete requested comment from database" do
-      expect { delete :destroy, id: @comment }.to change(Comment, :count).by(1)
+      expect { delete :destroy, id: @comment }.to change(Comment, :count).by(-1)
     end
     it "redirects to #index for comments views" do
       delete :destroy, id: @comment

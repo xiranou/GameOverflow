@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rspec-rails', '~> 3.1.0'
+  gem 'faker'
 end
 
 group :test do

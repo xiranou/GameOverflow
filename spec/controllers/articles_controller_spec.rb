@@ -48,8 +48,21 @@ describe ArticlesController do
 	end
 
 	describe 'Put#update' do
-		it "should update attributes for requested article"
-		it "should redirect back to the updated article"
+		before :each do
+			@article = create(:article)
+		end
+
+		it "should update valid attributes for requested article" do
+			put :update, id: @article, article: attrutes_for(:article, title:'changing title', content:'changing content')
+			@article.reload
+			expect(@article.title).to eq('changing title')
+			expect(@article.content).to eq('changing content')
+		end
+
+		it "should redirect back to the updated article" do
+			put :update, id: @article, article: attrutes_for(:article)
+			expect(response).to redirect_to @article
+		end
 	end
 
 	describe 'Get#new' do

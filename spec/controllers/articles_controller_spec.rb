@@ -18,9 +18,17 @@ describe ArticlesController do
 	end
 
 	describe 'Get#show' do
-		it "should render the template for a single article(show view)"
-		it "should assign requested article to @articles"
+		it "should render the template for a single article(show view)" do
+			article = create(:article)
+			get :show, id: article
+			expect(response).to render_template :show
+		end
 
+		it "should assign requested article to @articles" do
+			article = create(:article)
+			get :show, id: article
+			expect(assigns(:article)).to eq article
+		end
 
 	end
 

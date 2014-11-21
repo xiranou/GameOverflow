@@ -104,21 +104,21 @@ describe ArticlesController do
 
 		context 'valid articles' do
 			it "should save the new article to the database" do
-				expect{post :create, article: attrutes_for(:article)}.to change(Article, :count).by(1)
+				expect{post :create, article: attributes_for(:article)}.to change(Article, :count).by(1)
 			end
 
 			it "should redirect back to the new article(show)" do
-				post :create, article: attrutes_for(:article)
+				post :create, article: attributes_for(:article)
 				expect(response).to redirect_to article_path(assigns[:article])
 			end
 		end
 		context 'invalid articles' do
 			it "should not save the new article to the database" do
-				expect{post :create, article: attrutes_for(:invalid_article)}.to_not change(Article, :count)
+				expect{post :create, article: attributes_for(:article, title:nil)}.to_not change(Article, :count)
 			end
 
 			it "should re-render the new form " do
-				post :create, article: attrutes_for(:invalid_article)
+				post :create, article: attributes_for(:article, title:nil)
 				expect(response).to render_template :new
 			end
 		end

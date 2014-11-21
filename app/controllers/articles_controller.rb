@@ -6,12 +6,10 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    render :show
   end
 
   def edit
     @article = Article.find(params[:id])
-    render :edit
   end
 
   def update
@@ -21,6 +19,20 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article)
     else
       render :edit
+    end
+  end
+
+  def new
+    @article = Article.new
+  end
+
+  def create
+    @article = Article.new(article_params)
+
+    if @article.save
+      redirect_to article_path(@article)
+    else
+      render :new
     end
   end
 

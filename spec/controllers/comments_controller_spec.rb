@@ -74,4 +74,40 @@ describe CommentsController do
     end
   end
 
+  describe "Put#update" do
+    before :each do
+      @comment = create(:comment)
+    end
+    context 'with valid attributes' do
+      it "locates the requested comment" do
+        put :update, id: @comment, comment: attributes_for(:comment)
+        expect(assigns[:comment]).to eq(@comment)
+      end
+
+      it "updates the attributes" do
+        put :update, id: @comment, comment: attributes_for(:comment, text: "New test")
+        @comment.reload
+        expect(@comment.text).to eq("New test")
+      end
+
+      it "redirect to the updated comment" do
+        put :update, id: @comment, comment: attributes_for(:comment)
+        expect(response).to redirect_to(comment_path(@comment))
+      end
+    end
+
+    context 'with invalid attributes' do
+      it "should not updates the attributes" do
+        put :update, id: @comment, comment: attributes_for(:invalid_comment, text: "New test")
+        @comment.reload
+        expect(@comment.text).to_not eq("New test")
+      end
+
+      it "should re-render #edit for comments views" do
+        put :update, id: @comment, comment: attributes_for(:invalid_comment, text: "New test")
+        expect(resposne).to render_template(:edit)
+      end
+    end
+  end
+
 end

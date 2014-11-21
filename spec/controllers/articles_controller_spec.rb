@@ -66,8 +66,17 @@ describe ArticlesController do
 	end
 
 	describe 'Get#new' do
-		it "should render the template for the new article form"
-		it "should assign new article to variable @article"
+
+		it "should render the template for the new article form" do
+			get :new
+			expect(:response).to render_template :new
+
+		end
+
+		it "should assign new article to variable @article" do
+			get :new
+			expect(assigns(:article)).to create_a_new(Article)
+		end
 	end
 
 	describe 'Post#create' do

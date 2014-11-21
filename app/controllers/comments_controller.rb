@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
 
   def update
       @comment = Comment.find(params[:id])
-    if @comment.save
+    if @comment.update_attributes(comment_params)
       redirect_to comment_path(@comment)
     else
       render :edit

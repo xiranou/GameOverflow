@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :article
+  resources :articles
 
 end

@@ -27,7 +27,7 @@ describe CommentsController do
 
     it "should render :_show template for comments views" do
       get :show, id: @comment
-      expect(response).to render_template(:_show)
+      expect(response).to render_template(:show)
     end
   end
 

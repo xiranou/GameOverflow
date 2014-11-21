@@ -1,11 +1,19 @@
 require 'rails_helper'
 
-describe ArticlesController do 
+describe ArticlesController do
 
 	describe 'Get#index' do
-		it "should render the article index template" 
-		it "should create an array (@articles) of articles to display in the view"
+		it "should render the article index template" do
+			get :index
+			expect(response).to render_template :index
+		end
 
+		it "should create an array (@articles) of articles to display in the view" do
+			article1 = create(:article, title:'first test')
+			article2 = create(:article, title:'second test')
+			get :index
+			expect(assigns(:articles)).to match_array([article1, article2])
+		end
 
 	end
 
@@ -21,7 +29,7 @@ describe ArticlesController do
 		it "should assign requested article to @article"
 	end
 
-	describe 'Put#update' do 
+	describe 'Put#update' do
 		it "should update attributes for requested article"
 		it "should redirect back to the updated article"
 	end
@@ -40,5 +48,5 @@ describe ArticlesController do
 		it "should destroy requested article/delete from database"
 		it "should redirect back to articles#index"
 	end
-	
+
 end

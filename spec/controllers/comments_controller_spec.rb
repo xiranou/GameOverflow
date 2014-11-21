@@ -25,7 +25,7 @@ describe CommentsController do
       expect(assigns[:comment]).to eq(@comment)
     end
 
-    it "should render :_show template for comments views" do
+    it "should render :show template for comments views" do
       get :show, id: @comment
       expect(response).to render_template(:show)
     end

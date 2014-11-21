@@ -28,3 +28,14 @@ As a user, I want to:
 * Add tags for articles (game names, games features, anything!)
 * Search by tags
 * Vote down comments and articles
+
+
+**Wireframes**
+
+![image1](../assets/images/IMG_3488.JPG)
+![image2](../assets/images/IMG_3490.JPG)
+![image3](../assets/images/IMG_3491.JPG)
+![image4](../assets/images/IMG_3492.JPG)
+![image5](../assets/images/IMG_3493.JPG)
+![image6](../assets/images/IMG_3494.JPG)
+![image7](../assets/images/IMG_3495.JPG)

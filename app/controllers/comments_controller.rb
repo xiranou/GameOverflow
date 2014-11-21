@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+    render partial: "show"
   end
 
   def new

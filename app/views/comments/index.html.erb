@@ -1,6 +1,6 @@
 <div class="comments">
   <ul>
-  <% @comments.each do |comment| %>
+  <% comments.each do |comment| %>
     <%= render template: "comments/show", locals:{comment: comment} %>
   <% end %>
   </ul>

@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
+    render template: "comments/index", locals:{comments: @comments}
   end
 
   def show

@@ -4,13 +4,10 @@ FactoryGirl.define do
     content "THEY ARE COOL!!!!!1!1!1!111"
   end
 
-  factory :notitle_article do
-    title
+  factory :invalid_article do
+    title nil
     content "THEY ARE COOL!!!!!1!1!1!111"
   end
 
-  factory :nocontent_article do
-    title "I LUV GAMES"
-    content
-  end
+
 end

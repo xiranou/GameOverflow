@@ -35,13 +35,13 @@ describe ArticlesController do
 	describe 'Get#edit' do
 		it "should render the template for the edit form." do
 			article = create(:article)
-			get :show, id: article
+			get :edit, id: article
 			expect(response).to render_template :edit
 		end
 
 		it "should assign requested article to @article" do
 			article = create(:article)
-			get :show, id: article
+			get :edit, id: article
 			expect(assigns(:article)).to eq article
 		end
 
@@ -55,14 +55,14 @@ describe ArticlesController do
 				@article = create(:article)
 			end
 			it "should update valid attributes for requested article" do
-				put :update, id: @article, article: attrutes_for(:article, title:'changing title', content:'changing content')
+				put :update, id: @article, article: attributes_for(:article, title:'changing title', content:'changing content')
 				@article.reload
 				expect(@article.title).to eq('changing title')
 				expect(@article.content).to eq('changing content')
 			end
 
 			it "should redirect back to the updated article" do
-				put :update, id: @article, article: attrutes_for(:article)
+				put :update, id: @article, article: attributes_for(:article)
 				expect(response).to redirect_to @article
 			end
 		end
@@ -73,14 +73,14 @@ describe ArticlesController do
 			end
 
 			it "should not update invalid attributes for requested article" do
-				put :update, id: @article, article: attrutes_for(:invalid_article, title:nil, content:'changing content')
+				put :update, id: @article, article: attributes_for(:article, title:nil, content:'changing content')
 				@article.reload
 				expect(@article.title).to eq("I LUV GAMES")
 				expect(@article.content).to_not eq('changing content')
 			end
 
 			it "should re-render the edit form" do
-				put :update, id: @article, article: attrutes_for(:article)
+				put :update, id: @article, article: attributes_for(:article, title: nil)
 				expect(response).to render_template :edit
 			end
 		end
@@ -104,21 +104,21 @@ describe ArticlesController do
 
 		context 'valid articles' do
 			it "should save the new article to the database" do
-				expect{post :create, article: attrutes_for(:article)}.to change(Article, :count).by(1)
+				expect{post :create, article: attributes_for(:article)}.to change(Article, :count).by(1)
 			end
 
 			it "should redirect back to the new article(show)" do
-				post :create, article: attrutes_for(:article)
+				post :create, article: attributes_for(:article)
 				expect(response).to redirect_to article_path(assigns[:article])
 			end
 		end
 		context 'invalid articles' do
 			it "should not save the new article to the database" do
-				expect{post :create, article: attrutes_for(:invalid_article)}.to_not change(Article, :count)
+				expect{post :create, article: attributes_for(:article, title:nil)}.to_not change(Article, :count)
 			end
 
 			it "should re-render the new form " do
-				post :create, article: attrutes_for(:invalid_article)
+				post :create, article: attributes_for(:article, title:nil)
 				expect(response).to render_template :new
 			end
 		end
@@ -135,7 +135,7 @@ describe ArticlesController do
 
 		it "should redirect back to articles#index" do
 			delete :destroy, id: @article
-			expect(response).to redirect_to :index
+			expect(response).to redirect_to(articles_path)
 		end
 	end
 

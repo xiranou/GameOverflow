@@ -1,5 +1,5 @@
 <li class="comment">
   <p><%= comment.text %></p>
   <%= link_to "Edit", edit_comment_path(comment) %>
-  <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= render partial: "destroy", locals:{comment: comment} %>
 </li>

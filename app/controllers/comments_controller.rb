@@ -58,6 +58,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def vote
+    @comment = Comment.find(params[:comment_id])
+    @vote = Vote.create(voteable: @comment)
+    redirect_to comments_path
+  end
+
   private
 
   def comment_params

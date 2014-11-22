@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :comments do
     get "new_reply"
     post "reply"
+    post "vote"
   end
 
 end

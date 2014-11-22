@@ -1,3 +1,4 @@
 <p><%= comment.text %></p>
+<%= link_to "Reply!", comment_new_reply_path(comment) %>
 <%= link_to "Edit", edit_comment_path(comment) %>
 <%= render partial: "destroy", locals:{comment: comment} %>

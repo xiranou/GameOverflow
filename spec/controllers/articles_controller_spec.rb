@@ -139,14 +139,31 @@ describe ArticlesController do
 		end
 	end
 
-	describe 'Get#comment' do
+	describe 'Get#comment!' do
+		before do
+			@article = create(:article)
+		end
 
-		it 'should render the new comment form'
-		it 'should assign the new comment to be a new comment'
+		it 'should render the new comment form' do
+			get :new_comment, article_id: @article_path
+			expect(assigns[:comment!]).to render_template(:new_comment)
+		end
+
+		it 'should assign the new comment to be a new comment' do
+			get :new_comment, article_id: @article_path
+			expect(assigns[:comment!]).to be_a_new(Comment)
+		end
 	end
 
 	describe 'Post#create_comment' do
-		it 'should locate the requested article'
+		before do
+			@article = create(:article)
+		end
+
+		it 'should locate the requested article' do
+			post :comment, article_id: @article, article: attributes_for(:article)
+			expect(assigns[:article]).to eq(@article)
+		end
 		it 'should belong to the requested article'
 		it 'should save to the database'
 		xit 'should redirect back to the article'

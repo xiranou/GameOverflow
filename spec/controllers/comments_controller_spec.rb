@@ -149,14 +149,14 @@ describe CommentsController do
       @parent = create(:comment)
     end
     it "should locate the requested parent comment" do
-      post :reply, comment_id: @parent, reply: attributes_for(:comment)
+      post :reply, comment_id: @parent, comment: attributes_for(:comment)
       expect(assigns[:parent]).to eq(@parent)
     end
     it "should save to database" do
-      expect { post :reply, comment_id: @parent, reply: attributes_for(:comment) }.to change(Comment, :count).by(1)
+      expect { post :reply, comment_id: @parent, comment: attributes_for(:comment) }.to change(Comment, :count).by(1)
     end
     it "should belong to the requested parent comment" do
-      post :reply, comment_id: @parent, reply: attributes_for(:comment)
+      post :reply, comment_id: @parent, comment: attributes_for(:comment)
       expect(assigns[:reply].parent).to eq(@parent)
     end
   end

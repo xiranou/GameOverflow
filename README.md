@@ -47,8 +47,8 @@ As a user, I want to:
 **Assignments**
 
 * Xiran:
-  * Done: Recursive Commenting
-  * TODO: Votes, rewrite routes for comments with articles
+  * Done: Recursive Commenting, Votes
+  * TODO: Rewrite routes for comments with articles
 * Jensen: 
   * Done: make article polymorphic
   * TODO: Edit article views to show votes and comments

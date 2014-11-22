@@ -2,12 +2,10 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
-    render template: "comments/index", locals:{comments: @comments}
   end
 
   def show
     @comment = Comment.find(params[:id])
-    render template: "comments/show", locals:{comment: @comment}
   end
 
   def new
@@ -28,7 +26,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-      @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
     if @comment.update_attributes(comment_params)
       redirect_to comment_path(@comment)
     else

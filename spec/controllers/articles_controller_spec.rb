@@ -139,4 +139,17 @@ describe ArticlesController do
 		end
 	end
 
+	describe 'Get#comment' do
+
+		it 'should render the new comment form'
+		it 'should assign the new comment to be a new comment'
+	end
+
+	describe 'Post#create_comment' do
+		it 'should locate the requested article'
+		it 'should belong to the requested article'
+		it 'should save to the database'
+		xit 'should redirect back to the article'
+	end
+
 end

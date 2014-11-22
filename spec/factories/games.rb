@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:name){|n| "Action #{n}"}
   end
 
-  factory :invalid_comment do
+  factory :invalid_game do
     name nil
   end
 end

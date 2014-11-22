@@ -44,7 +44,9 @@ As a user, I want to:
 
 **Assignments**
 
-* Xiran: comments, votes
+* Xiran:
+  * Done: Recursive Commenting
+  * TODO: Votes, rewrite routes for comments with articles
 * Jensen: finish article views, make article polymorphic,
 * AJ: Category model,
 * Rebecca: User model, signup/login(session, controller)

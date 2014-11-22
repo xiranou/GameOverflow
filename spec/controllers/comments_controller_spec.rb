@@ -130,4 +130,40 @@ describe CommentsController do
     end
   end
 
+  describe "Get#reply" do
+    before do
+      @parent = create(:comment)
+    end
+    it "should assign the new reply to be a Comment" do
+      get :new_reply, comment_id: @parent
+      expect(assigns[:reply]).to be_a_new(Comment)
+    end
+    it "should render the new form" do
+      get :new_reply, comment_id: @parent
+      expect(assigns[:reply]).to render_template(:new_reply)
+    end
+  end
+
+  describe "Post#create_reply" do
+    before do
+      @parent = create(:comment)
+    end
+    it "should locate the requested parent comment" do
+      post :reply, comment_id: @parent, comment: attributes_for(:comment)
+      expect(assigns[:parent]).to eq(@parent)
+    end
+    it "should save to database" do
+      expect { post :reply, comment_id: @parent, comment: attributes_for(:comment) }.to change(Comment, :count).by(1)
+    end
+    it "should belong to the requested parent comment" do
+      post :reply, comment_id: @parent, comment: attributes_for(:comment, text: "child!")
+      reply = assigns[:reply].reload
+      expect(reply.parent).to eq(assigns[:parent])
+    end
+    xit "redirect to parent article" do
+      post :reply, comment_id: @parent, comment: attributes_for(:comment, text: "child!")
+      expect(response).to redirect_to(article_path(assigns[:parent].article))
+    end
+  end
+
 end

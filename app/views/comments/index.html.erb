@@ -1,7 +1,7 @@
 <div class="comments">
   <ul>
-  <% comments.each do |comment| %>
-    <%= render template: "comments/show", locals:{comment: comment} %>
+  <% @comments.each do |comment| %>
+    <%= render template: "comments/show", locals:{comment: comment}, layout: false %>
   <% end %>
   </ul>
 </div>

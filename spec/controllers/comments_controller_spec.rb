@@ -171,14 +171,14 @@ describe CommentsController do
       @comment = create(:comment)
     end
     it "should locate the requested comment" do
-      post :vote, id: @comment
+      post :vote, comment_id: @comment
       expect(assigns[:comment]).to eq(@comment)
     end
     it "save the vote to the database" do
-      expect { post :vote, id: @comment }.to change(Vote, :count).by(1)
+      expect { post :vote, comment_id: @comment }.to change(Vote, :count).by(1)
     end
     it "should have the voteable as Comment" do
-      post :vote, id: @comment
+      post :vote, comment_id: @comment
       vote = assigns[:vote].reload
       expect(vote.voteable_type).to eq("Comment")
     end

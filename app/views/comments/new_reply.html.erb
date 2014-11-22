@@ -1,3 +1,7 @@
 <div class="new-reply-form">
-  <%= render partial: "form", locals:{comment: @reply} %>
+  <%= form_for @reply, url: {action: :reply} do |f| %>
+  <%= f.label :text %>
+  <%= f.text_area :text %>
+  <%= f.submit %>
+  <% end %>
 </div>

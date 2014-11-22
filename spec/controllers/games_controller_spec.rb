@@ -71,11 +71,11 @@ describe GamesController do
 
     context 'invalid games' do
       it "should not save the game into the database" do
-        expect { post :create, game: attributes_for(:game, text: nil) }.to_not change(game, :count)
+        expect { post :create, game: attributes_for(:game, name: nil) }.to_not change(game, :count)
       end
 
       it "should re-render games#new" do
-        post :create, game: attributes_for(:game, text: nil)
+        post :create, game: attributes_for(:game, name: nil)
         expect(response).to render_template(:new)
       end
     end
@@ -92,9 +92,9 @@ describe GamesController do
       end
 
       it "updates the attributes" do
-        put :update, id: @game, game: attributes_for(:game, text: "New test")
+        put :update, id: @game, game: attributes_for(:game, name: "New game")
         @game.reload
-        expect(@game.text).to eq("New test")
+        expect(@game.name).to eq("New game")
       end
 
       it "redirect to the updated game" do
@@ -107,11 +107,11 @@ describe GamesController do
       it "should not updates the attributes" do
         put :update, id: @game, game: attributes_for(:game, text: nil)
         @game.reload
-        expect(@game.text).to_not eq(nil)
+        expect(@game.name).to_not eq(nil)
       end
 
       it "should re-render #edit for games views" do
-        put :update, id: @game, game: attributes_for(:game, text: nil)
+        put :update, id: @game, game: attributes_for(:game, name: nil)
         expect(response).to render_template(:edit)
       end
     end

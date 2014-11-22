@@ -156,8 +156,12 @@ describe CommentsController do
       expect { post :reply, comment_id: @parent, comment: attributes_for(:comment) }.to change(Comment, :count).by(1)
     end
     it "should belong to the requested parent comment" do
-      post :reply, comment_id: @parent, comment: attributes_for(:comment)
-      expect(assigns[:reply].parent).to eq(@parent)
+      post :reply, comment_id: @parent, comment: attributes_for(:comment, text: "child!")
+      expect(assigns[:reply].parent).to eq(assigns[:parent])
+    end
+    xit "redirect to parent article" do
+      post :reply, comment_id: @parent, comment: attributes_for(:comment, text: "child!")
+      expect(response).to redirect_to(article_path(assigns[:parent].article))
     end
   end
 

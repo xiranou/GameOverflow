@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+    render template: "comments/show", locals:{comment: @comment}
   end
 
   def new
@@ -51,7 +52,7 @@ class CommentsController < ApplicationController
     @reply.assign_attributes({parent: @parent})
 
     if @reply.save
-      redirect_to articles_path
+      redirect_to comments_path
     else
       render template: "comments/new_reply"
     end

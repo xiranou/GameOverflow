@@ -42,6 +42,11 @@ class CommentsController < ApplicationController
     redirect_to(comments_path)
   end
 
+  def new_reply
+    @parent = Comment.find(params[:comment_id])
+    @reply = Comment.new(parent: @parent)
+  end
+
   private
 
   def comment_params

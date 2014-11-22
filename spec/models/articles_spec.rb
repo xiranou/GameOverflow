@@ -12,7 +12,8 @@ describe Article do
 
   it { should have_many(:comments)}
 
+  it {should have_many(:votes)}
+
   it {should belong_to(:discussable)}
 
-  it {should }
 end

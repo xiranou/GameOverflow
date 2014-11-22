@@ -146,12 +146,12 @@ describe ArticlesController do
 
 		it 'should render the new comment form' do
 			get :new_comment, article_id: @article_path
-			expect(assigns[:comment!]).to render_template(:new_comment)
+			expect(assigns[:comment]).to render_template(:new_comment)
 		end
 
-		it 'should assign the new comment to be a new comment' do
+		it 'should assign the new comment to be a new Comment' do
 			get :new_comment, article_id: @article_path
-			expect(assigns[:comment!]).to be_a_new(Comment)
+			expect(assigns[:comment]).to be_a_new(Comment)
 		end
 	end
 
@@ -161,12 +161,23 @@ describe ArticlesController do
 		end
 
 		it 'should locate the requested article' do
-			post :comment, article_id: @article, article: attributes_for(:article)
+			post :create_comment, article_id: @article, comment:attributes_for(:comment)
 			expect(assigns[:article]).to eq(@article)
 		end
-		it 'should belong to the requested article'
-		it 'should save to the database'
-		xit 'should redirect back to the article'
+		it 'should save to the database' do
+			expect{ post :create_comment, article_id: @article, comment:attributes_for(:comment)}.to change(Comment, :count).by(1)
+		end
+		it 'should belong to the requested article' do
+			post :create_comment, article_id: @article, comment:attributes_for(:comment, text:"I'm your comment!")
+			comment = assigns[:comment].reload
+			expect(comment.parent).to eq(assigns[:article])
+		end
+
+		xit 'should redirect back to the article' do
+			post :create_comment, article_id: @article, comment:attributes_for(:comment, text:"I'm your comment!")
+			expect(response).to redirect_to(article_path(assigns[:comment]).article)
+
+		end
 	end
 
 end

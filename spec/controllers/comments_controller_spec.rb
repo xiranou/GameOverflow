@@ -130,4 +130,39 @@ describe CommentsController do
     end
   end
 
+  describe "Get#reply" do
+    before do
+      @parent = create(:comment)
+    end
+    it "should assign the new reply to be a Comment" do
+      get :reply, id: @parent
+      expect(assigns[:reply]).to be_a_new(Comment)
+    end
+    it "should locate the requested parent comment" do
+      get :reply, id: @parent
+      expect(assigns[:parent]).to eq(@parent)
+    end
+    it "should render the new form" do
+      get :reply, id: @parent
+      expect(assigns[:reply]).to render_template(:reply)
+    end
+  end
+
+  describe "Post#create_reply" do
+    before do
+      @parent = create(:comment)
+    end
+    it "should locate the requested parent comment" do
+      post :create_reply, id: @parent, reply: attributes_for(:comment)
+      expect(assigns[:parent]).to eq(@parent)
+    end
+    it "should save to database" do
+      expect { post :create_reply, id: @parent, reply: attributes_for(:comment) }.to change(Comment, :count).by(1)
+    end
+    it "should belong to the requested parent comment" do
+      post :create_reply, id: @parent, reply: attributes_for(:comment)
+      expect(assigns[:reply].parent).to eq(@parent)
+    end
+  end
+
 end

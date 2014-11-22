@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20141122173730) do
   end
 
   create_table "votes", force: true do |t|
-    t.integer  "voter_id"
     t.integer  "voteable_id"
     t.string   "voteable_type"
     t.datetime "created_at"

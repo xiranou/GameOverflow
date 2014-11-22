@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root "welcome#index"
   resources :articles
 
-  resources :comments
+  resources :comments do
+    get "new_reply"
+    post "reply"
+  end
 
 end

@@ -41,16 +41,19 @@ class CommentsController < ApplicationController
   end
 
   def new_reply
+    @parent = Comment.find(params[:comment_id])
     @reply = Comment.new
   end
 
   def reply
     @parent = Comment.find(params[:comment_id])
-    @reply = Comment.new(parent: @parent)
-    if @reply.update_attributes(comment_params)
-      redirect_to comments_path
+    @reply = Comment.new(comment_params)
+    @reply.assign_attributes({parent: @parent})
+
+    if @reply.save
+      redirect_to articles_path
     else
-      render :new_reply
+      render template: "comments/new_reply"
     end
   end
 

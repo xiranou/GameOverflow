@@ -33,18 +33,18 @@ As a user, I want to:
 
 **Wireframes**
 
-![image1](GameOverflow/app/assets/images/IMG_3488.JPG)
-![image2](GameOverflow/app/assets/images/IMG_3490.JPG)
-![image3](GameOverflow/app/assets/images/IMG_3491.JPG)
-![image4](GameOverflow/app/assets/images/IMG_3492.JPG)
-![image5](GameOverflow/app/assets/images/IMG_3493.JPG)
-![image6](GameOverflow/app/assets/images/IMG_3494.JPG)
-![image7](GameOverflow/app/assets/images/IMG_3495.JPG)
+![image1](app/assets/images/IMG_3488.JPG)
+![image2](app/assets/images/IMG_3490.JPG)
+![image3](app/assets/images/IMG_3491.JPG)
+![image4](app/assets/images/IMG_3492.JPG)
+![image5](app/assets/images/IMG_3493.JPG)
+![image6](app/assets/images/IMG_3494.JPG)
+![image7](app/assets/images/IMG_3495.JPG)
 
 
 **Assignments**
 
 * Xiran: comments, votes
-* Jensen: finish article views, make article polymorphic, 
-* AJ: Category model, 
+* Jensen: finish article views, make article polymorphic,
+* AJ: Category model,
 * Rebecca: User model, signup/login(session, controller)

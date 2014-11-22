@@ -53,4 +53,8 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text)
   end
 
+  def reply_params
+    params.require(:reply).permit(:text)
+  end
+
 end

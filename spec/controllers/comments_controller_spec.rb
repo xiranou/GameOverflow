@@ -144,7 +144,7 @@ describe CommentsController do
     end
     it "should render the new form" do
       get :new_reply, comment_id: @parent
-      expect(assigns[:reply]).to render_template(:reply)
+      expect(assigns[:reply]).to render_template(:new_reply)
     end
   end
 

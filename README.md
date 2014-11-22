@@ -28,6 +28,7 @@ As a user, I want to:
 * Add tags for articles (game names, games features, anything!)
 * Search by tags
 * Vote down comments and articles
+* Use Google API
 
 
 **Wireframes**
@@ -39,3 +40,11 @@ As a user, I want to:
 ![image5](GameOverflow/app/assets/images/IMG_3493.JPG)
 ![image6](GameOverflow/app/assets/images/IMG_3494.JPG)
 ![image7](GameOverflow/app/assets/images/IMG_3495.JPG)
+
+
+**Assignments**
+
+* Xiran: comments, votes
+* Jensen: finish article views, make article polymorphic, 
+* AJ: Category model, 
+* Rebecca: User model, signup/login(session, controller)

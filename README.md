@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/ospreys-2014/GameOverflow/tree/master.png?style=badge)](https://circleci.com/gh/ospreys-2014/GameOverflow/tree/master)
+
 #GameOverflow
 **MVP**
 

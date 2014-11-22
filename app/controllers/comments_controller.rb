@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
   def reply
     @parent = Comment.find(params[:comment_id])
     @reply = Comment.new(parent: @parent)
-    if @reply.update_attributes(reply_params)
+    if @reply.update_attributes(comment_params)
       redirect_to comments_path
     else
       render :new_reply
@@ -60,10 +60,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text)
-  end
-
-  def reply_params
-    params.require(:reply).permit(:text)
   end
 
 end

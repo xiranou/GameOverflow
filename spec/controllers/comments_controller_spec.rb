@@ -138,10 +138,6 @@ describe CommentsController do
       get :new_reply, comment_id: @parent
       expect(assigns[:reply]).to be_a_new(Comment)
     end
-    it "should locate the requested parent comment" do
-      get :new_reply, comment_id: @parent
-      expect(assigns[:parent]).to eq(@parent)
-    end
     it "should render the new form" do
       get :new_reply, comment_id: @parent
       expect(assigns[:reply]).to render_template(:new_reply)

@@ -43,7 +43,6 @@ class CommentsController < ApplicationController
   end
 
   def new_reply
-    @parent = Comment.find(params[:comment_id])
     @reply = Comment.new
   end
 

@@ -34,7 +34,7 @@ describe GamesController do
   describe "Get#new" do
     it "should assign @game to a new game" do
       get :new
-      expect(assigns(:game)).to be_a_new(game)
+      expect(assigns(:game)).to be_a_new(Game)
     end
     it "should render :new for games views" do
       get :new
@@ -60,7 +60,7 @@ describe GamesController do
   describe "Post#create" do
     context 'valid games' do
       it "should save the new game into the database" do
-        expect { post :create, game: attributes_for(:game) }.to change(game, :count).by(1)
+        expect { post :create, game: attributes_for(:game) }.to change(Game, :count).by(1)
       end
 
       it "redirects to games#show" do
@@ -71,11 +71,11 @@ describe GamesController do
 
     context 'invalid games' do
       it "should not save the game into the database" do
-        expect { post :create, game: attributes_for(:game, name: nil) }.to_not change(game, :count)
+        expect { post :create, game: attributes_for(:game, title: nil) }.to_not change(Game, :count)
       end
 
       it "should re-render games#new" do
-        post :create, game: attributes_for(:game, name: nil)
+        post :create, game: attributes_for(:game, title: nil)
         expect(response).to render_template(:new)
       end
     end
@@ -92,9 +92,9 @@ describe GamesController do
       end
 
       it "updates the attributes" do
-        put :update, id: @game, game: attributes_for(:game, name: "New game")
+        put :update, id: @game, game: attributes_for(:game, title: "New game")
         @game.reload
-        expect(@game.name).to eq("New game")
+        expect(@game.title).to eq("New game")
       end
 
       it "redirect to the updated game" do
@@ -107,11 +107,11 @@ describe GamesController do
       it "should not updates the attributes" do
         put :update, id: @game, game: attributes_for(:game, text: nil)
         @game.reload
-        expect(@game.name).to_not eq(nil)
+        expect(@game.title).to_not eq(nil)
       end
 
       it "should re-render #edit for games views" do
-        put :update, id: @game, game: attributes_for(:game, name: nil)
+        put :update, id: @game, game: attributes_for(:game, title: nil)
         expect(response).to render_template(:edit)
       end
     end

@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
 
-  resources :games
+  resources :games, except: :destroy
 
-  resources :consoles
+  resources :consoles, except: :destroy
 
 end
 

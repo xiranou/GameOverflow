@@ -1,7 +1,17 @@
 <%= link_to "Back", :back %>
 <div class= "show_article">
   <h2><%= @article.title %></h2>
+  <p>Votes: <%= @article.votes.count %></p>
   <h4><%= @article.content %></h4>
+  <%= render partial:'vote', locals:{article:@article}  %>
   <%= link_to "Edit", edit_article_path(@article) %>
-  <%= render template: "comments/index", locals:{comments: @article.comments} %>
-</div>
+
+  <ul>
+    <% @article.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+    <% end %>
+  </ul>
+
+
+
+  </div>

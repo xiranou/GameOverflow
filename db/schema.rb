@@ -12,6 +12,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
+<<<<<<< HEAD
+=======
+ActiveRecord::Schema.define(version: 20141122222517) do
+
+ActiveRecord::Schema.define(version: 20141123165204) do
+# >>>>>>> I don't know what this is
+>>>>>>> add games migration
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +42,18 @@
     t.integer  "parent_id"
   end
 
+<<<<<<< HEAD
   create_table "users", force: true do |t|
     t.string   "handle"
     t.string   "email"
     t.string   "password_digest"
     t.text     "about"
+=======
+  create_table "games", force: true do |t|
+    t.string   "title"
+    t.integer  "genre_id"
+    t.integer  "console_id"
+>>>>>>> add games migration
     t.datetime "created_at"
     t.datetime "updated_at"
   end

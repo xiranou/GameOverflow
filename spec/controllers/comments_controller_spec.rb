@@ -65,4 +65,31 @@ describe CommentsController do
       expect(response).to render_template :edit
     end
   end
+
+  describe "Post#vote" do
+    before do
+      @comment = create(:comment, article: @article)
+      @user = create(:user)
+      session[:user_id] = @user.id
+    end
+
+    after do
+      session[:user_id] = nil
+    end
+
+    it 'should locate requested comment' do
+      post :vote, article_id: @article, comment_id: @comment
+      expect(assigns[:comment]).to eq(@comment)
+    end
+
+    it 'should save the vote to the database' do
+      expect {post :vote, article_id: @article, comment_id: @comment }.to change(Vote, :count).by(1)
+    end
+
+    it 'should have the voteable as Article' do
+      post :vote, article_id: @article, comment_id: @comment
+      vote = assigns[:vote].reload
+      expect(vote.voteable_type).to eq("Comment")
+    end
+  end
 end

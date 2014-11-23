@@ -182,6 +182,12 @@ describe ArticlesController do
 	describe "Post#vote" do
 		before do
 			@article = create(:article)
+			@user = create(:user)
+			session[:user_id] = @user.id
+		end
+
+		after do
+		  session[:user_id] = nil
 		end
 
 		it 'should locate requested article' do

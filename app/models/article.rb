@@ -3,4 +3,5 @@ class Article < ActiveRecord::Base
   belongs_to :discussable, polymorphic: true
   has_many :comments
   has_many :votes, as: :voteable
+  belongs_to :author, class_name: "User"
 end

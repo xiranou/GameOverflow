@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    render template: "articles/index", locals:{articles: @articles}
   end
 
   def edit

@@ -65,9 +65,10 @@ class CommentsController < ApplicationController
   end
 
   def vote
+    @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:comment_id])
     @vote = Vote.create(voteable: @comment)
-    redirect_to comments_path
+    redirect_to article_comments_path(@article)
   end
 
   private

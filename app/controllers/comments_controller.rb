@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
     @reply.assign_attributes({parent: @parent})
 
     if @reply.save
-      redirect_to comments_path
+      redirect_to article_path(@parent.article)
     else
       render template: "comments/new_reply"
     end

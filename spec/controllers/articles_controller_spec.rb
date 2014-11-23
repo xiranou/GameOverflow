@@ -138,5 +138,48 @@ describe ArticlesController do
 			expect(response).to redirect_to(articles_path)
 		end
 	end
+# The get route for a new comment should reroute to
+# the CommentController's new_comment_path, You may need
+# to tweak these next two tests depending on which controller
+# we want to handle the get request for the new_comment
+	describe 'Get#new_comment' do
+		before do
+			@article = create(:article)
+		end
+
+		it 'should render the new comment form' do
+			get :new_comment, article_id: @article
+			expect(assigns[:comment]).to render_template("comments/new")
+		end
+
+		it 'should assign the new comment to be a new Comment' do
+			get :new_comment, article_id: @article
+			expect(assigns[:comment]).to be_a_new(Comment)
+		end
+	end
+
+	describe 'Post#create_comment' do
+		before do
+			@article = create(:article)
+		end
+
+		it 'should locate the requested article' do
+			post :create_comment, article_id: @article, comment:attributes_for(:comment)
+			expect(assigns[:article]).to eq(@article)
+		end
+		it 'should save to the database' do
+			expect{ post :create_comment, article_id: @article, comment:attributes_for(:comment)}.to change(Comment, :count).by(1)
+		end
+		it 'should belong to the requested article' do
+			post :create_comment, article_id: @article, comment:attributes_for(:comment, text:"I'm your comment!")
+			comment = assigns[:comment].reload
+			expect(comment.article).to eq(assigns[:article])
+		end
+
+		it 'should redirect back to the article' do
+			post :create_comment, article_id: @article, comment:attributes_for(:comment, text:"I'm your comment!")
+			expect(response).to redirect_to(article_path(assigns[:comment].article))
+		end
+	end
 
 end

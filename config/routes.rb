@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "welcome#index"
-  resources :articles
+  resources :articles do
+    get 'new_comment'
+    post 'create_comment'
+  end
 
   resources :comments do
     get "new_reply"

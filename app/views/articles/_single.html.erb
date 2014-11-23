@@ -5,10 +5,6 @@
   <%= render partial:'vote', locals:{article:@article}  %>
   <%= link_to "Edit", edit_article_path(article) %>
   <%= link_to "Delete", article_path(article), method: :delete %>
-  <p><%= article.content %><p>
-  <ul class="comments">
-  <% article.comments.each do |comment| %>
-    <%= render template: "comments/show", locals:{comment: comment} %>
-  <% end %>
-  </ul>
-</p>
+  <p><%= article.content %></p>
+  <%= render template: "comments/index", locals:{comments: article.comments} %>
+</div>

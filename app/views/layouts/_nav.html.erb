@@ -11,9 +11,12 @@
   <div class="navbar-collapse collapse navbar-inverse-collapse">
     <ul class="nav navbar-nav">
       <li><%= link_to "Articles", articles_path %></li>
+      <% if session[:user_id] %>
       <li><%= link_to "Log Out", logout_path %></li>
+      <% else %>
       <li><%= link_to "Sign Up", signup_path %></li>
       <li><%= link_to "Log In", login_path %></li>
+      <% end %>
     </ul>
   </div>
 </div>

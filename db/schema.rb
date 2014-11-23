@@ -11,26 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
-ActiveRecord::Schema.define(version: 20141122222517) do
-
-ActiveRecord::Schema.define(version: 20141123165204) do
-# >>>>>>> I don't know what this is
->>>>>>> add games migration
-=======
-ActiveRecord::Schema.define(version: 20141123165204) do
->>>>>>> fixed merge conflict, still don't know which schema.define is relevant
-=======
-ActiveRecord::Schema.define(version: 20141123173956) do
->>>>>>> schema updated
-=======
 ActiveRecord::Schema.define(version: 20141123190226) do
->>>>>>> add genres migration
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"

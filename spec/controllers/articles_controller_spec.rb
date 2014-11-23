@@ -138,10 +138,7 @@ describe ArticlesController do
 			expect(response).to redirect_to(articles_path)
 		end
 	end
-# The get route for a new comment should reroute to
-# the CommentController's new_comment_path, You may need
-# to tweak these next two tests depending on which controller
-# we want to handle the get request for the new_comment
+
 	describe 'Get#new_comment' do
 		before do
 			@article = create(:article)
@@ -181,5 +178,4 @@ describe ArticlesController do
 			expect(response).to redirect_to(article_path(assigns[:comment].article))
 		end
 	end
-
 end

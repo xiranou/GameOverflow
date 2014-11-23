@@ -1,1 +1,8 @@
-index.html.erb
+<div class='consoles'>
+  <ul>
+    <% @consoles.each do |console| %>
+      <li><%= link_to "#{console.name}", console_path(console)%></li>
+    <%end%>
+  </ul>
+
+</div>

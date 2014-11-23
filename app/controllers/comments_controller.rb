@@ -54,10 +54,11 @@ class CommentsController < ApplicationController
   end
 
   def reply
+    @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @parent = Comment.find(params[:comment_id])
     @reply = Comment.new(comment_params)
-    @reply.assign_attributes({parent: @parent, article: @article})
+    @reply.assign_attributes({parent: @parent, article: @article, commenter: @user})
 
     if @reply.save
       redirect_to article_path(@article)

@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe ArticlesController do
+	before do
+		@user = create(:user)
+		session[:user_id] = @user.id
+  end
+
+  after do
+  	session[:user_id] = nil
+  end
 
 	describe 'Get#index' do
 		it "should render the article index template" do

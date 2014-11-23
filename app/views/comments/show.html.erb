@@ -1,4 +1,8 @@
 <li class="comment">
   <%= render partial: "comments/single", locals:{comment: comment} %>
-  <%= render partial: "comments/vote", locals:{comment: comment} %>
+  <ul class="replies">
+      <% comment.replies.each do |reply| %>
+        <%= render template: "comments/show", locals:{comment: reply} %>
+      <% end %>
+  </ul>
 </li>

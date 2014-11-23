@@ -1,13 +1,23 @@
 <div class= "article">
+
   <h3><%= article.title %></h3>
   <h3>written by: <%= article.author.handle %></h3>
-  <p>Likes! <%= article.votes.count %></p>
-  <%= render partial:'vote', locals:{article:@article}  %>
-  <%= link_to "Edit", edit_article_path(article) %>
-  <%= link_to "Delete", article_path(article), method: :delete %>
+  <h4>Likes! <%= article.votes.count %></h4>
   <p><%= article.content %></p>
+
+  <% if session[:user_id] %>
+    <%= render partial:'vote', locals:{article:@article}  %>
+  <% end %>
+
+  <% if session[:user_id] == article.author.id %>
+    <%= link_to "Edit", edit_article_path(article) %>
+    <%= link_to "Delete", article_path(article), method: :delete %>
+  <% end %>
+
   <%= render template: "comments/index", locals:{comments: article.comments} %>
+
   <% if session[:user_id] %>
     <%= link_to "New Comment!", new_article_comment_path(article) %>
   <% end %>
+
 </div>

@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
   def vote
     @article = Article.find(params[:article_id])
     @vote = Vote.create(voteable: @article)
-    redirect_to articles_path
+    redirect_to article_path(@article)
   end
 
   private

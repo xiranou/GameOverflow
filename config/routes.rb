@@ -12,5 +12,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users
+
+  get '/signup' => 'users#new'
+  get '/logout' => 'sessions#destroy'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
 
 end

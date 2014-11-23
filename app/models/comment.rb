@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  validates_presence_of :text
+  validates_presence_of :text, :commenter_id
 
   belongs_to :article
 

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def index
     @article = Article.find(params[:article_id])
     @comments = @article.comments
-    render template "comments/index", locals:{comments: comments}
+    render template: "comments/index", locals:{comments: @comments}
   end
 
   def show

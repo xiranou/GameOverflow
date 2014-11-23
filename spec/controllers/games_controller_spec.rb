@@ -105,7 +105,7 @@ describe GamesController do
 
     context 'with invalid attributes' do
       it "should not updates the attributes" do
-        put :update, id: @game, game: attributes_for(:game, text: nil)
+        put :update, id: @game, game: attributes_for(:game, title: nil)
         @game.reload
         expect(@game.title).to_not eq(nil)
       end

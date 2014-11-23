@@ -20,5 +20,7 @@ Rails.application.routes.draw do
 
   resources :games
 
+  resources :consoles
+
 end
 

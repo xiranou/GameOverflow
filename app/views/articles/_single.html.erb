@@ -1,5 +1,7 @@
 <h3><%= article.title %></h3>
 <%= link_to "Edit", edit_article_path(article) %>
 <%= link_to "Delete", article_path(article), method: :delete %>
-<h5><%= article.content %></h5>
-<%= link_to "Comments", article_comments_path(article) %>
+<p><%= article.content %><p>
+<% article.comments.each do |comment| %>
+  <%= render template: "comments/show", locals:{comment: comment} %>
+<% end %>

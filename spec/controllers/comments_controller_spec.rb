@@ -3,6 +3,12 @@ require "rails_helper"
 describe CommentsController do
   before do
     @article = create(:article)
+    @user = create(:user)
+    session[:user_id] = @user.id
+  end
+
+  after do
+      session[:user_id] = nil
   end
   describe "Get#index" do
     it "should locate the comments of the requested article" do
@@ -33,6 +39,10 @@ describe CommentsController do
 
   describe "Post#create" do
     context 'with valid attributes' do
+      it "should locate the current user" do
+        post :create, article_id: @article
+        expect(assigns[:user]).to eq(@user)
+      end
       it "should save into the database" do
         expect{post :create, article_id: @article, comment: attributes_for(:comment, article: @article)}.to change(Comment, :count).by(1)
       end
@@ -69,12 +79,6 @@ describe CommentsController do
   describe "Post#vote" do
     before do
       @comment = create(:comment, article: @article)
-      @user = create(:user)
-      session[:user_id] = @user.id
-    end
-
-    after do
-      session[:user_id] = nil
     end
 
     it 'should locate requested comment' do

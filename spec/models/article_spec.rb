@@ -8,6 +8,7 @@ describe Article do
     end
     it { should validate_presence_of :title }
     it { should validate_presence_of :content }
+    it { should validate_presence_of :author_id}
   end
   describe "associations" do
     it { should have_many(:comments)}

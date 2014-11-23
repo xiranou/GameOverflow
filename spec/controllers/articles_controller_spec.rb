@@ -182,4 +182,26 @@ describe ArticlesController do
 		end
 	end
 
+	describe "Post#vote" do
+		before do
+			@article = create(:article)
+		end
+
+		it 'should locate requested article' do
+			post :vote, article_id: @article
+			expect(assigns[:article]).to eq(@article)
+		end
+
+		it 'should save the vote to the database' do
+			expect {post :vote, article_id: @article }.to change(Vote, :count).by(1)
+		end
+
+		it 'should have the voteable as Article' do
+			post :vote, article_id: @article
+			vote = assigns[:vote].reload
+			expect(vote.voteable_type).to eq("Article")
+		end
+
+	end
+
 end

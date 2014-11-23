@@ -27,8 +27,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
     @article = Article.new(article_params)
-
+    @article.assign_attributes({author: @user})
     if @article.save
       redirect_to article_path(@article)
     else
@@ -49,9 +50,10 @@ class ArticlesController < ApplicationController
   end
 
   def create_comment
+    @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @comment = Comment.new(comment_params)
-    @comment.assign_attributes({article: @article})
+    @comment.assign_attributes({article: @article, commenter: @user})
 
     if @comment.save
       redirect_to article_path(@article)

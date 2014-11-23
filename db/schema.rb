@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -23,6 +24,9 @@ ActiveRecord::Schema.define(version: 20141123165204) do
 =======
 ActiveRecord::Schema.define(version: 20141123165204) do
 >>>>>>> fixed merge conflict, still don't know which schema.define is relevant
+=======
+ActiveRecord::Schema.define(version: 20141123173956) do
+>>>>>>> schema updated
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +48,12 @@ ActiveRecord::Schema.define(version: 20141123165204) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
+  end
+
+  create_table "consoles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "games", force: true do |t|

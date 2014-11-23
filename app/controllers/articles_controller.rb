@@ -46,8 +46,12 @@ class ArticlesController < ApplicationController
   def vote
     @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
-    @vote = Vote.create(voteable: @article, voter: @user)
-    redirect_to article_path(@article)
+    @vote = Vote.new(voteable: @article, voter: @user)
+    if @vote.save
+      redirect_to article_path(@article)
+    else
+      redirect_to article_path(@article)
+    end
   end
 
   private

@@ -4,5 +4,8 @@
       <li><%= link_to "#{article.title}", article_path(article)%></li>
     <%end%>
   </ul>
+  <% if session[:user_id] %>
+    <%= link_to "New Article", new_article_path %>
+  <% end %>
 
 </div>

@@ -147,13 +147,13 @@ describe ArticlesController do
 			@article = create(:article)
 		end
 
-		xit 'should render the new comment form' do
-			get :new_comment, article_id: @article_path
-			expect(assigns[:comment]).to render_template(:new_comment_path)
+		it 'should render the new comment form' do
+			get :new_comment, article_id: @article
+			expect(assigns[:comment]).to render_template("comments/new")
 		end
 
-		xit 'should assign the new comment to be a new Comment' do
-			get :new_comment, article_id: @article_path
+		it 'should assign the new comment to be a new Comment' do
+			get :new_comment, article_id: @article
 			expect(assigns[:comment]).to be_a_new(Comment)
 		end
 	end
@@ -176,10 +176,9 @@ describe ArticlesController do
 			expect(comment.article).to eq(assigns[:article])
 		end
 
-		xit 'should redirect back to the article' do
+		it 'should redirect back to the article' do
 			post :create_comment, article_id: @article, comment:attributes_for(:comment, text:"I'm your comment!")
-			expect(response).to redirect_to(article_path(assigns[:comment]).article)
-
+			expect(response).to redirect_to(article_path(assigns[:comment].article))
 		end
 	end
 

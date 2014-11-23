@@ -1,7 +1,9 @@
 require "rails_helper"
 
 describe CommentsController do
-
+  before do
+    @article = create(:article)
+  end
   describe "Get#index" do
     it "should locate an array of comments form Comment" do
       comment_one = create(:comment)
@@ -146,7 +148,7 @@ describe CommentsController do
 
   describe "Post#create_reply" do
     before do
-      @parent = create(:comment)
+      @parent = create(:comment, article: @article)
     end
     it "should locate the requested parent comment" do
       post :reply, comment_id: @parent, comment: attributes_for(:comment)
@@ -160,7 +162,7 @@ describe CommentsController do
       reply = assigns[:reply].reload
       expect(reply.parent).to eq(assigns[:parent])
     end
-    xit "redirect to parent article" do
+    it "redirect to parent article" do
       post :reply, comment_id: @parent, comment: attributes_for(:comment, text: "child!")
       expect(response).to redirect_to(article_path(assigns[:parent].article))
     end

@@ -42,18 +42,19 @@ ActiveRecord::Schema.define(version: 20141123165204) do
     t.integer  "parent_id"
   end
 
-<<<<<<< HEAD
   create_table "users", force: true do |t|
     t.string   "handle"
     t.string   "email"
     t.string   "password_digest"
     t.text     "about"
-=======
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "games", force: true do |t|
     t.string   "title"
     t.integer  "genre_id"
     t.integer  "console_id"
->>>>>>> add games migration
     t.datetime "created_at"
     t.datetime "updated_at"
   end

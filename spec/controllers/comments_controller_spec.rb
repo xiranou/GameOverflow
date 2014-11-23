@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe CommentsController do
   before do
-    @article = create(:article)
     @user = create(:user)
+    @article = create(:article, author:@user)
     session[:user_id] = @user.id
   end
 

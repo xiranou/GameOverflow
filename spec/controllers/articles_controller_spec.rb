@@ -17,8 +17,8 @@ describe ArticlesController do
 		end
 
 		it "should create an array (@articles) of articles to display in the view" do
-			article1 = create(:article, title:'first test')
-			article2 = create(:article, title:'second test')
+			article1 = create(:article, title:'first test', author: @user)
+			article2 = create(:article, title:'second test', author: @user)
 			get :index
 			expect(assigns(:articles)).to match_array([article1, article2])
 		end
@@ -27,13 +27,13 @@ describe ArticlesController do
 
 	describe 'Get#show' do
 		it "should render the template for a single article(show view)" do
-			article = create(:article)
+			article = create(:article, author:@user)
 			get :show, id: article
 			expect(response).to render_template :show
 		end
 
 		it "should assign requested article to @articles" do
-			article = create(:article)
+			article = create(:article, author:@user)
 			get :show, id: article
 			expect(assigns(:article)).to eq article
 		end
@@ -42,13 +42,13 @@ describe ArticlesController do
 
 	describe 'Get#edit' do
 		it "should render the template for the edit form." do
-			article = create(:article)
+			article = create(:article, author:@user)
 			get :edit, id: article
 			expect(response).to render_template :edit
 		end
 
 		it "should assign requested article to @article" do
-			article = create(:article)
+			article = create(:article, author:@user)
 			get :edit, id: article
 			expect(assigns(:article)).to eq article
 		end
@@ -60,7 +60,7 @@ describe ArticlesController do
 		context 'Valid update' do
 
 			before :each do
-				@article = create(:article)
+				@article = create(:article, author:@user)
 			end
 			it "should update valid attributes for requested article" do
 				put :update, id: @article, article: attributes_for(:article, title:'changing title', content:'changing content')
@@ -77,7 +77,7 @@ describe ArticlesController do
 
 		context 'Invalid update' do
 			before :each do
-				@article = create(:article)
+				@article = create(:article, author:@user)
 			end
 
 			it "should not update invalid attributes for requested article" do
@@ -134,7 +134,7 @@ describe ArticlesController do
 
 	describe 'Delete#destroy' do
 		before :each do
-			@article = create(:article)
+			@article = create(:article, author:@user)
 		end
 
 		it "should destroy requested article/delete from database" do
@@ -147,11 +147,12 @@ describe ArticlesController do
 		end
 	end
 
+
 	describe "Post#vote" do
 		before do
-			@article = create(:article)
 			@user = create(:user)
 			session[:user_id] = @user.id
+			@article = create(:article, author:@user)
 		end
 
 		after do

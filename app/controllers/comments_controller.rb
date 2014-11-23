@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to(comments_path)
+    redirect_to(article_comments_path(@comment.article))
   end
 
   def new_reply
@@ -48,12 +48,13 @@ class CommentsController < ApplicationController
   end
 
   def reply
+    @article = Article.find(params[:article_id])
     @parent = Comment.find(params[:comment_id])
     @reply = Comment.new(comment_params)
-    @reply.assign_attributes({parent: @parent})
+    @reply.assign_attributes({parent: @parent, article: @article})
 
     if @reply.save
-      redirect_to article_path(@parent.article)
+      redirect_to article_path(@article)
     else
       render template: "comments/new_reply"
     end

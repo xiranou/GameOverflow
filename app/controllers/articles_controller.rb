@@ -45,6 +45,7 @@ class ArticlesController < ApplicationController
   def new_comment
     @article = Article.find(params[:article_id])
     @comment = Comment.new
+    render template: "comments/new"
   end
 
   def create_comment
@@ -53,9 +54,9 @@ class ArticlesController < ApplicationController
     @comment.assign_attributes({article: @article})
 
     if @comment.save
-      redirect_to articles_path
+      redirect_to article_path(@article)
     else
-      render template: "comments/new_reply"
+      render template: "comments/new"
     end
   end
 

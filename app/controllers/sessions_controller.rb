@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:log_in][:password])
       session[:user_id] = user.id
-      redirect_to article_path
+      redirect_to(articles_path)
     else
       render :new
     end
@@ -20,6 +20,5 @@ class SessionsController < ApplicationController
       redirect_to(root_path)
     end
   end
-
-
+  
 end

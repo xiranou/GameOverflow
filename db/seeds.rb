@@ -3,7 +3,7 @@ require 'faker'
 user = User.create(handle: "test", email: "test@gmail.com", password: "test")
 
 ["xbox-one","ps4","wii-u"].each do |console|
-  Console.create(name: console)
+  Console.find_or_create_by(name: console)
 end
 
 consoles = Console.all

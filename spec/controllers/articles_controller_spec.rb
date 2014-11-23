@@ -148,7 +148,6 @@ describe ArticlesController do
 	end
 
 
-
 	describe "Post#vote" do
 		before do
 			@user = create(:user)

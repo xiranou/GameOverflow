@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     post "vote"
   end
 
+  resources :users
+
+  get 'logout' => 'sessions#destroy'
+  get '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
+
 end

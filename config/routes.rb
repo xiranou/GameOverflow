@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root "welcome#index"
   resources :articles do
-    get 'new_comment'
-    post 'create_comment'
     post 'vote'
 
     resources :comments do

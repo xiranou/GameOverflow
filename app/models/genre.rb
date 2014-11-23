@@ -3,4 +3,5 @@ class Genre < ActiveRecord::Base
 
   has_many :games
 
+  has_many :articles, as: :discussable
 end

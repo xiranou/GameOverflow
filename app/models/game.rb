@@ -3,4 +3,6 @@ class Game < ActiveRecord::Base
 
   belongs_to :console
   belongs_to :genre
+
+  has_many :articles, as: :discussable
 end

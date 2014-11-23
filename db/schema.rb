@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20141123173753) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "discussable_id"
-    t.string   "discussable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"

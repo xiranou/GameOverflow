@@ -151,9 +151,9 @@ describe ArticlesController do
 
 	describe "Post#vote" do
 		before do
-			@article = create(:article, author:@user)
 			@user = create(:user)
 			session[:user_id] = @user.id
+			@article = create(:article, author:@user)
 		end
 
 		after do

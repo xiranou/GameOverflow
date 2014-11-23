@@ -42,9 +42,30 @@ class ArticlesController < ApplicationController
     redirect_to(articles_path)
   end
 
+  def new_comment
+    @article = Article.find(params[:article_id])
+    @comment = Comment.new
+  end
+
+  def create_comment
+    @article = Article.find(params[:article_id])
+    @comment = Comment.new(comment_params)
+    @comment.assign_attributes({article: @article})
+
+    if @comment.save
+      redirect_to articles_path
+    else
+      render template: "comments/new_reply"
+    end
+  end
+
   private
 
   def article_params
     params.require(:article).permit(:title,:content)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:text)
   end
 end

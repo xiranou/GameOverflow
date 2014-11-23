@@ -12,8 +12,12 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @article = Article.find(params[:article_id])
-    @comment = Comment.new
+    if session[:user_id]
+      @article = Article.find(params[:article_id])
+      @comment = Comment.new
+    else
+      redirect_to login_path
+    end
   end
 
   def create
@@ -30,7 +34,11 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    if session[:user_id]
+      @comment = Comment.find(params[:id])
+    else
+      redirect_to login_path
+    end
   end
 
   def update
@@ -49,18 +57,22 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     if session[:user_id] == @comment.commenter.id
+      @comment = Comment.find(params[:id])
       @comment.destroy
+      redirect_to(article_path(@comment.article))
     else
-      flash[:error] = "You don't have permission"
+      redirect_to login_path
     end
-    redirect_to(article_path(@comment.article))
   end
 
   def new_reply
-    @parent = Comment.find(params[:comment_id])
-    @reply = Comment.new
+    if session[:user_id]
+      @parent = Comment.find(params[:comment_id])
+      @reply = Comment.new
+    else
+      redirect_to login_path
+    end
   end
 
   def reply
@@ -78,12 +90,17 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    @user = User.find(session[:user_id])
-    @article = Article.find(params[:article_id])
-    @comment = Comment.find(params[:comment_id])
-    @vote = Vote.new(voteable: @comment, voter: @user)
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+      @article = Article.find(params[:article_id])
+      @comment = Comment.find(params[:comment_id])
+      @vote = Vote.new(voteable: @comment, voter: @user)
+    else
+      redirect_to login_path
+    end
+
     if @vote.save
-      redirect_to article_comments_path(@article)
+      redirect_to article_path(@article)
     else
       redirect_to article_path(@article)
     end

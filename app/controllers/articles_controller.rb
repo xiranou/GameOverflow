@@ -9,13 +9,22 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    if session[:user_id]
+      @article = Article.find(params[:id])
+    else
+      redirect_to login_path
+    end
   end
 
   def update
     @article = Article.find(params[:id])
+    if session[:user_id] == @article.author.id
+      @article.assign_attributes(article_params)
+    else
+      flash[:error] = "You don't have permission"
+    end
 
-    if @article.update_attributes(article_params)
+    if @article.save
       redirect_to article_path(@article)
     else
       render :edit
@@ -23,7 +32,11 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    if session[:user_id]
+      @article = Article.new
+    else
+      redirect_to login_path
+    end
   end
 
   def create
@@ -38,15 +51,24 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
-    redirect_to(articles_path)
+    if session[:user_id]
+      @article = Article.find(params[:id])
+      @article.destroy
+      redirect_to(articles_path)
+    else
+      redirect_to login_path
+    end
   end
 
   def vote
-    @user = User.find(session[:user_id])
-    @article = Article.find(params[:article_id])
-    @vote = Vote.new(voteable: @article, voter: @user)
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+      @article = Article.find(params[:article_id])
+      @vote = Vote.new(voteable: @article, voter: @user)
+    else
+      redirect_to login_path
+    end
+
     if @vote.save
       redirect_to article_path(@article)
     else
@@ -58,9 +80,5 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title,:content)
-  end
-
-  def comment_params
-    params.require(:comment).permit(:text)
   end
 end

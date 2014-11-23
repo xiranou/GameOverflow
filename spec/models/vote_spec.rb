@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 describe Vote do
-  xit { should belong_to :voter }
-  xit { should validate_presence_of :voter_id }
-  it { should belong_to :voteable }
-  it { should validate_presence_of :voteable }
+  describe "validations" do
+    it { should validate_presence_of :voter_id }
+    it { should validate_presence_of :voteable }
+  end
+  describe "associations" do
+    it { should belong_to :voter }
+    it { should belong_to :voteable }
+  end
 end

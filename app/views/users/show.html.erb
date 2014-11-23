@@ -1,6 +1,6 @@
 <h1><%= @user.handle %></h1>
 
-<h3>Articles<h3>
+<h3>Recent Articles<h3>
 	<ul>
 		<% @articles.each do |article|%>
 			<li><%= link_to "#{article.title}", article_path(article) %></li>

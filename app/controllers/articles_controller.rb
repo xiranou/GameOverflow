@@ -43,25 +43,6 @@ class ArticlesController < ApplicationController
     redirect_to(articles_path)
   end
 
-  def new_comment
-    @article = Article.find(params[:article_id])
-    @comment = Comment.new
-    render template: "comments/new"
-  end
-
-  def create_comment
-    @user = User.find(session[:user_id])
-    @article = Article.find(params[:article_id])
-    @comment = Comment.new(comment_params)
-    @comment.assign_attributes({article: @article, commenter: @user})
-
-    if @comment.save
-      redirect_to article_path(@article)
-    else
-      render template: "comments/new"
-    end
-  end
-
   def vote
     @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])

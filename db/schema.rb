@@ -13,6 +13,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -27,6 +28,9 @@ ActiveRecord::Schema.define(version: 20141123165204) do
 =======
 ActiveRecord::Schema.define(version: 20141123173956) do
 >>>>>>> schema updated
+=======
+ActiveRecord::Schema.define(version: 20141123190226) do
+>>>>>>> add genres migration
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +64,12 @@ ActiveRecord::Schema.define(version: 20141123173956) do
     t.string   "title"
     t.integer  "genre_id"
     t.integer  "console_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "genres", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

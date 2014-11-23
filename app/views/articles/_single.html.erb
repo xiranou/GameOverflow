@@ -7,5 +7,7 @@
   <%= link_to "Delete", article_path(article), method: :delete %>
   <p><%= article.content %></p>
   <%= render template: "comments/index", locals:{comments: article.comments} %>
-  <%= link_to "New Comment!", new_article_comment_path(article) %>
+  <% if session[:user_id] %>
+    <%= link_to "New Comment!", new_article_comment_path(article) %>
+  <% end %>
 </div>

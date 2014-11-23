@@ -7,4 +7,6 @@ class Comment < ActiveRecord::Base
   has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
 
   has_many :votes, as: :voteable
+
+  belongs_to :commenter, class_name: "User"
 end

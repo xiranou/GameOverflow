@@ -11,27 +11,30 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @article = Article.find(params[:article_id])
     @comment = Comment.new
   end
 
-  def edit
-    @article = Article.find(params[:article_id])
-    @comment = Comment.find(params[:id])
-  end
-
   def create
+    @article = Article.find(params[:article_id])
     @comment = Comment.new(comment_params)
+    @comment.assign_attributes({article: @article})
+
     if @comment.save
-      redirect_to comment_path(@comment)
+      redirect_to article_path(@article)
     else
       render :new
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
   def update
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(comment_params)
-      redirect_to comment_path(@comment)
+      redirect_to article_path(@comment.article)
     else
       render :edit
     end
@@ -40,7 +43,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to(article_comments_path(@comment.article))
+    redirect_to(article_path(@comment.article))
   end
 
   def new_reply

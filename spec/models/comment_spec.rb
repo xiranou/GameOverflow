@@ -10,6 +10,6 @@ describe Comment do
     it { should have_many(:replies).dependent(:destroy) }
     it { should have_many(:votes) }
 
-    it { should belong_to(:commenter) }
+    it { should belong_to(:commenter).class_name("User") }
   end
 end

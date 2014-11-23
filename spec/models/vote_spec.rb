@@ -6,7 +6,7 @@ describe Vote do
     it { should validate_presence_of :voteable }
   end
   describe "associations" do
-    it { should belong_to :voter }
+    it { should belong_to(:voter).class_name("User") }
     it { should belong_to :voteable }
   end
 end

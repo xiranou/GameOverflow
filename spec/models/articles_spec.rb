@@ -14,6 +14,6 @@ describe Article do
     it {should have_many(:votes)}
     it {should belong_to(:discussable)}
 
-    it { should belong_to(:author) }
+    it { should belong_to(:author).class_name("User") }
   end
 end

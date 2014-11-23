@@ -22,5 +22,7 @@ Rails.application.routes.draw do
 
   resources :consoles, except: :destroy
 
+  resources :genres, except: :destroy
+
 end
 

@@ -35,7 +35,13 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update_attributes(comment_params)
+    if session[:user_id] == @comment.commenter.id
+      @comment.assign_attributes(comment_params)
+    else
+      flash[:error] = "You don't have permission"
+    end
+
+    if @comment.save
       redirect_to article_path(@comment.article)
     else
       render :edit
@@ -44,7 +50,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    if session[:user_id] == @comment.commenter.id
+      @comment.destroy
+    else
+      flash[:error] = "You don't have permission"
+    end
     redirect_to(article_path(@comment.article))
   end
 

@@ -15,5 +15,7 @@ describe User do
     it { should have_many(:articles).with_foreign_key(:author_id) }
     it { should have_many(:articles).with_foreign_key(:author_id) }
     it { should have_many(:votes).with_foreign_key(:voter_id) }
+    it { should have_many(:voted_articles) }
+    it { should have_many(:voted_comments) }
   end
 end

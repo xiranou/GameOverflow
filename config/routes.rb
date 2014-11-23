@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :articles do
     get 'new_comment'
     post 'create_comment'
+    post 'vote'
 
     resources :comments do
       get "new_reply"

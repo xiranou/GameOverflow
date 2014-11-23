@@ -11,4 +11,9 @@ describe User do
     it { should_not allow_value("@gmail.com", "someotherthing.com").for(:email) }
     it { should have_secure_password }
   end
+  describe "associations" do
+    it { should have_many(:articles).with_foreign_key(:author_id) }
+    it { should have_many(:articles).with_foreign_key(:author_id) }
+    it { should have_many(:votes).with_foreign_key(:voter_id) }
+  end
 end

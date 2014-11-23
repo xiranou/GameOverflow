@@ -1,8 +1,6 @@
 <ul class="comments">
-  <% @comments.each do |comment| %>
+  <% comments.each do |comment| %>
     <% next unless comment.parent_id.nil? %>
-
     <%= render template: "comments/show", locals:{comment: comment}, layout: false %>
-
   <% end %>
 </ul>

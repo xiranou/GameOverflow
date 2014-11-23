@@ -3,10 +3,16 @@ require "rails_helper"
 describe CommentsController do
   before do
     @article = create(:article)
+    @user = create(:user)
+    session[:user_id] = @user.id
+  end
+
+  after do
+      session[:user_id] = nil
   end
   describe "Get#index" do
     it "should locate the comments of the requested article" do
-      comments = [create(:comment, article: @article), create(:comment, article: @article)]
+      comments = [create(:comment, article: @article, commenter: @user), create(:comment, article: @article, commenter: @user)]
       get :index, article_id: @article
       expect(assigns[:comments]).to match_array(comments)
     end
@@ -33,11 +39,15 @@ describe CommentsController do
 
   describe "Post#create" do
     context 'with valid attributes' do
+      it "should locate the current user" do
+        post :create, article_id: @article, comment: attributes_for(:comment)
+        expect(assigns[:user]).to eq(@user)
+      end
       it "should save into the database" do
-        expect{post :create, article_id: @article, comment: attributes_for(:comment, article: @article)}.to change(Comment, :count).by(1)
+        expect{post :create, article_id: @article, comment: attributes_for(:comment)}.to change(Comment, :count).by(1)
       end
       it "should redirect to requested article" do
-        post :create, article_id: @article, comment: attributes_for(:comment, article: @article)
+        post :create, article_id: @article, comment: attributes_for(:comment)
         expect(response).to redirect_to(article_path(assigns[:article]))
       end
     end
@@ -54,7 +64,7 @@ describe CommentsController do
 
   describe "Get#edit" do
     before do
-      @comment = create(:comment)
+      @comment = create(:comment, article: @article, commenter: @user)
     end
     it "should locate the requested comment" do
       get :edit, article_id: @article, id: @comment
@@ -63,6 +73,27 @@ describe CommentsController do
     it "should render the :edit page for comment" do
       get :edit, article_id: @article, id: @comment
       expect(response).to render_template :edit
+    end
+  end
+
+  describe "Post#vote" do
+    before do
+      @comment = create(:comment, article: @article, commenter: @user)
+    end
+
+    it 'should locate requested comment' do
+      post :vote, article_id: @article, comment_id: @comment
+      expect(assigns[:comment]).to eq(@comment)
+    end
+
+    it 'should save the vote to the database' do
+      expect {post :vote, article_id: @article, comment_id: @comment }.to change(Vote, :count).by(1)
+    end
+
+    it 'should have the voteable as Article' do
+      post :vote, article_id: @article, comment_id: @comment
+      vote = assigns[:vote].reload
+      expect(vote.voteable_type).to eq("Comment")
     end
   end
 end

@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   def index
     @article = Article.find(params[:article_id])
     @comments = @article.comments
+    render template: "comments/index", locals:{comments: @comments}
   end
 
   def show
@@ -16,9 +17,10 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @comment = Comment.new(comment_params)
-    @comment.assign_attributes({article: @article})
+    @comment.assign_attributes({article: @article, commenter: @user})
 
     if @comment.save
       redirect_to article_path(@article)
@@ -52,10 +54,11 @@ class CommentsController < ApplicationController
   end
 
   def reply
+    @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @parent = Comment.find(params[:comment_id])
     @reply = Comment.new(comment_params)
-    @reply.assign_attributes({parent: @parent, article: @article})
+    @reply.assign_attributes({parent: @parent, article: @article, commenter: @user})
 
     if @reply.save
       redirect_to article_path(@article)
@@ -65,9 +68,10 @@ class CommentsController < ApplicationController
   end
 
   def vote
+    @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:comment_id])
-    @vote = Vote.create(voteable: @comment)
+    @vote = Vote.create(voteable: @comment, voter: @user)
     redirect_to article_comments_path(@article)
   end
 

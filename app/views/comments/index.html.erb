@@ -1,10 +1,5 @@
-<div class="comments">
-  <ul>
+<ul class="comments">
   <% @comments.each do |comment| %>
-    <%= render template: "comments/show", locals:{comment: comment}, layout: false %>
+    <%= render partial: "comments/single", locals:{comment: comment}, layout: false %>
   <% end %>
-  </ul>
-</div>
-<div class="new-comment">
-  <%= link_to "New Comment", new_comment_path %>
-</div>
+</ul>

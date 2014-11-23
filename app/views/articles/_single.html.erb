@@ -1,4 +1,6 @@
 <h3><%= article.title %></h3>
+<p>Likes! <%= article.votes.count %></p>
+<%= render partial:'vote', locals:{article:@article}  %>
 <%= link_to "Edit", edit_article_path(article) %>
 <%= link_to "Delete", article_path(article), method: :delete %>
 <p><%= article.content %><p>

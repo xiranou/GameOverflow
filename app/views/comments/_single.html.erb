@@ -1,12 +1,5 @@
-<p><%= comment.text %></p>
-<p>Likes: (<%= comment.votes.count %>)</p>
-<%= link_to "Reply!", comment_new_reply_path(comment) %>
-<%= link_to "Edit", edit_comment_path(comment) %>
-<%= render partial: "destroy", locals:{comment: comment} %>
-<ul class="replies">
-  <% comment.replies.each do |reply| %>
-    <li class="reply">
-    <%= render partial: "comments/single", locals:{comment: reply} %>
-    </li>
-  <% end %>
-</ul>
+<li class="comment">
+  <%= comment.text %>
+  <%= link_to "Edit!", edit_article_comment_path(comment.article, comment) %>
+  <%= link_to "Delete!", article_comment_path(comment.article, comment), method: :delete %>
+</li>

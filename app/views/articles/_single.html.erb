@@ -1,3 +1,9 @@
-<p><%= comment.text %></p>
-<%= link_to "Edit", edit_comment_path(comment) %>
-<%= render partial: "destroy", locals:{comment: comment} %>
+<h3><%= article.title %></h3>
+<p>Likes! <%= article.votes.count %></p>
+<%= render partial:'vote', locals:{article:@article}  %>
+<%= link_to "Edit", edit_article_path(article) %>
+<%= link_to "Delete", article_path(article), method: :delete %>
+<p><%= article.content %><p>
+<% article.comments.each do |comment| %>
+  <%= render template: "comments/show", locals:{comment: comment} %>
+<% end %>

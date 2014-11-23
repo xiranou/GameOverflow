@@ -1,7 +1,4 @@
 <%= link_to "Back", :back %>
 <div class= "show_article">
-  <h2><%= @article.title %></h2>
-  <h4><%= @article.content %></h4>
-  <%= link_to "Edit", edit_article_path(@article) %>
-  <%= render template: "comments/index", locals:{comments: @article.comments} %>
+  <%= render partial: "articles/single", locals:{article: @article} %>
 </div>

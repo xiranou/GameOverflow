@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments = Comment.all
+    @article = Article.find(params[:article_id])
+    @comments = @article.comments
   end
 
   def show
@@ -10,26 +11,30 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @article = Article.find(params[:article_id])
     @comment = Comment.new
+  end
+
+  def create
+    @article = Article.find(params[:article_id])
+    @comment = Comment.new(comment_params)
+    @comment.assign_attributes({article: @article})
+
+    if @comment.save
+      redirect_to article_path(@article)
+    else
+      render :new
+    end
   end
 
   def edit
     @comment = Comment.find(params[:id])
   end
 
-  def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to comment_path(@comment)
-    else
-      render :new
-    end
-  end
-
   def update
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(comment_params)
-      redirect_to comment_path(@comment)
+      redirect_to article_path(@comment.article)
     else
       render :edit
     end
@@ -38,7 +43,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to(comments_path)
+    redirect_to(article_path(@comment.article))
   end
 
   def new_reply
@@ -47,21 +52,23 @@ class CommentsController < ApplicationController
   end
 
   def reply
+    @article = Article.find(params[:article_id])
     @parent = Comment.find(params[:comment_id])
     @reply = Comment.new(comment_params)
-    @reply.assign_attributes({parent: @parent})
+    @reply.assign_attributes({parent: @parent, article: @article})
 
     if @reply.save
-      redirect_to article_path(@parent.article)
+      redirect_to article_path(@article)
     else
       render template: "comments/new_reply"
     end
   end
 
   def vote
+    @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:comment_id])
     @vote = Vote.create(voteable: @comment)
-    redirect_to comments_path
+    redirect_to article_comments_path(@article)
   end
 
   private

@@ -60,6 +60,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def vote
+    @article = Article.find(params[:article_id])
+    @vote = Vote.create(voteable: @article)
+    redirect_to article_path(@article)
+  end
+
   private
 
   def article_params

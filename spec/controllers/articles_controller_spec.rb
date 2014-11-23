@@ -138,10 +138,7 @@ describe ArticlesController do
 			expect(response).to redirect_to(articles_path)
 		end
 	end
-# The get route for a new comment should reroute to
-# the CommentController's new_comment_path, You may need
-# to tweak these next two tests depending on which controller
-# we want to handle the get request for the new_comment
+
 	describe 'Get#new_comment' do
 		before do
 			@article = create(:article)
@@ -179,6 +176,27 @@ describe ArticlesController do
 		it 'should redirect back to the article' do
 			post :create_comment, article_id: @article, comment:attributes_for(:comment, text:"I'm your comment!")
 			expect(response).to redirect_to(article_path(assigns[:comment].article))
+		end
+	end
+
+	describe "Post#vote" do
+		before do
+			@article = create(:article)
+		end
+
+		it 'should locate requested article' do
+			post :vote, article_id: @article
+			expect(assigns[:article]).to eq(@article)
+		end
+
+		it 'should save the vote to the database' do
+			expect {post :vote, article_id: @article }.to change(Vote, :count).by(1)
+		end
+
+		it 'should have the voteable as Article' do
+			post :vote, article_id: @article
+			vote = assigns[:vote].reload
+			expect(vote.voteable_type).to eq("Article")
 		end
 	end
 

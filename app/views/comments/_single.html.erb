@@ -1,5 +1,4 @@
-<li class="comment">
-  <%= comment.text %>
-  <%= link_to "Edit!", edit_article_comment_path(comment.article, comment) %>
-  <%= link_to "Delete!", article_comment_path(comment.article, comment), method: :delete %>
-</li>
+<%= comment.text %>
+<%= link_to "Reply", article_comment_new_reply_path(comment.article, comment) %>
+<%= link_to "Edit!", edit_article_comment_path(comment.article, comment) %>
+<%= link_to "Delete!", article_comment_path(comment.article, comment), method: :delete %>

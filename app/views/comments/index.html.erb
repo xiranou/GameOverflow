@@ -1,5 +1,8 @@
 <ul class="comments">
   <% @comments.each do |comment| %>
-    <%= render partial: "comments/single", locals:{comment: comment}, layout: false %>
+    <% next unless comment.parent_id.nil? %>
+
+    <%= render template: "comments/show", locals:{comment: comment}, layout: false %>
+
   <% end %>
 </ul>

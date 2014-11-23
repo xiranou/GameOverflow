@@ -16,9 +16,10 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @comment = Comment.new(comment_params)
-    @comment.assign_attributes({article: @article})
+    @comment.assign_attributes({article: @article, commenter: @user})
 
     if @comment.save
       redirect_to article_path(@article)

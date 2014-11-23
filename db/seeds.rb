@@ -14,8 +14,10 @@ end
 
 discussables = Console.all + Game.all + Genre.all
 
-10.times do
-  Article.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, author: user, discussable: discussables.sample)
+discussables.each do |discussable|
+  rand(1..2).times do
+    Article.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, author: user, discussable: discussable)
+  end
 end
 
 Article.all.each do |article|

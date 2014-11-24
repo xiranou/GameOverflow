@@ -25,4 +25,30 @@ end
 
 Article.all.each do |article|
   article.comments.create(text: Faker::Lorem.paragraph, commenter: user)
-end
+
+
+Game.create(title: "Left 4 Dead")
+Game.create(title: "Assassin's Creed: Revelations")
+
+Genre.create(name: "RPG")
+Genre.create(name: "Shooter")
+Genre.create(name: "Sport")
+Genre.create(name: "Action")
+Genre.create(name: "Adventure")
+Genre.create(name: "Arcade")
+Genre.create(name: "Fighting")
+Genre.create(name: "Racing")
+Genre.create(name: "Strategy")
+Genre.create(name: "Puzzle & Cards")
+Genre.create(name: "Other")
+
+Console.create(name: "PS4")
+Console.create(name: "PS3")
+Console.create(name: "Wii U")
+Console.create(name: "Xbox One")
+Console.create(name: "Xbox 360")
+Console.create(name: "PC")
+Console.create(name: "Mobile")
+Console.create(name: "Vita")
+Console.create(name: "3DS")
+

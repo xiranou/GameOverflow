@@ -1,0 +1,13 @@
+<img src='/imgs/profile_photo.jpg'>
+<h1><%= @user.handle %></h1>
+<p>Articles Posted: <%= @user.articles.count %><br>
+	Likes: <%= @user.votes.count %><br>
+	Join Date: <%= @user.created_at %><br>
+</p>
+
+<h3>Recent Articles<h3>
+	<ul>
+		<% @articles.each do |article|%>
+			<li><%= link_to "#{article.title}", article_path(article) %></li>
+		<% end %>
+	</ul>

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @articles = @user.articles[-3..-1]
+    # @votes = Vote.find_by(voter_id: @user.id)
   end
 
   def new

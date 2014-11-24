@@ -6,21 +6,31 @@
 
   <ul>
     <li><span><%= link_to "Articles", articles_path %></span></li>
-    <li><span><%= link_to "Games", games_path %></span></li>
+    <li class='active has-sub'><span><%= link_to "Games", games_path %></span>
+      <ul>
+        <% Game.all.each do |game| %>
+
+          <li class='has-sub'><span><%= link_to "#{game.title}", game_path(game) %></span></a></li>
+
+        <% end %>
+      </ul>
+    </li>
     <li class='active has-sub'><span><%= link_to "Consoles", consoles_path %></span>
       <ul>
-        <li class='has-sub'><a href='#'><span>Product 1</span></a>
-        </li>
-        <li class='has-sub'><a href='#'><span>Product 2</span></a>
-        </li>
+        <% Console.all.each do |console| %>
+
+          <li class='has-sub'><span><%= link_to "#{console.name}", console_path(console) %></span></a></li>
+
+        <% end %>
       </ul>
     </li>
     <li class='active has-sub'><span><%= link_to "Genres", genres_path %></span>
-      <ul>
-        <li class='has-sub'><a href='#'><span>Product 1</span></a>
-        </li>
-        <li class='has-sub'><a href='#'><span>Product 2</span></a>
-        </li>
+       <ul>
+        <% Genre.all.each do |genre| %>
+
+          <li class='has-sub'><span><%= link_to "#{genre.name}", genre_path(genre) %></span></a></li>
+
+        <% end %>
       </ul>
     </li>
 

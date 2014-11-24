@@ -4,5 +4,6 @@ class Game < ActiveRecord::Base
   belongs_to :console
   belongs_to :genre
 
-  has_many :articles
+  has_many :topics, as: :discussable
+  has_many :articles, through: :topics
 end

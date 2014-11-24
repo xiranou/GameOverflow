@@ -5,7 +5,8 @@ class Article < ActiveRecord::Base
   has_many :votes, as: :voteable
   belongs_to :author, class_name: "User"
 
-  belongs_to :genre
-  belongs_to :game
-  belongs_to :console
+  has_many :topics
+  has_many :genre_topic, through: :topics, source_type: "Genre"
+  has_many :game_topic, through: :topics, source_type: "Game"
+  has_many :console_topic, through: :topics, source_type: "Console"
 end

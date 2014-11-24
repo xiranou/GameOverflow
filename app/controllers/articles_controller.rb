@@ -24,6 +24,11 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if session[:user_id] == @article.author.id
       @article.assign_attributes(article_params)
+      @game = Game.find_or_create_by(title: params[:article][:game_topics])
+      @genre = Genre.find_or_create_by(name: params[:article][:genre_topics])
+      @console = Console.find_or_create_by(name: params[:article][:console_topics])
+      topics = [Topic.find_or_create_by(discussable: @game), Topic.find_or_create_by(discussable: @genre), Topic.find_or_create_by(discussable: @console)]
+      @article.assign_attributes({topics: topics})
     else
       flash[:error] = "You don't have permission"
     end
@@ -50,9 +55,7 @@ class ArticlesController < ApplicationController
     @genre = Genre.find_or_create_by(name: params[:article][:genre_topics])
     @console = Console.find_or_create_by(name: params[:article][:console_topics])
     topics = [Topic.find_or_create_by(discussable: @game), Topic.find_or_create_by(discussable: @genre), Topic.find_or_create_by(discussable: @console)]
-    topics.each do |topic|
-      @article.topics << topic
-    end
+    @article.assign_attributes({topics: topics})
     @article.assign_attributes({author: @user})
     if @article.save
       redirect_to article_path(@article)

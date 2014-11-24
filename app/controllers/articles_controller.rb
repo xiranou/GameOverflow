@@ -46,9 +46,12 @@ class ArticlesController < ApplicationController
   def create
     @user = User.find(session[:user_id])
     @article = Article.new(article_params)
-    topics = []
-    params[:article][:topics].split(" ").each do |discussable|
-      @article.assign_attributes({topics: Topic.find_or_create_by(discussable: discussable)})
+    @game = Game.find_or_create_by(title: params[:article][:game_topics])
+    @genre = Genre.find_or_create_by(name: params[:article][:genre_topics])
+    @console = Console.find_or_create_by(name: params[:article][:console_topics])
+    topics = [Topic.find_or_create_by(discussable: @game), Topic.find_or_create_by(discussable: @genre), Topic.find_or_create_by(discussable: @console)]
+    topics.each do |topic|
+      @article.topics << topic
     end
     @article.assign_attributes({author: @user})
     if @article.save

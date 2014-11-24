@@ -1,9 +1,9 @@
 <div class= "article">
 
-  <h3><%= article.title %></h3>
-  <h3>written by: <%= article.author.handle %></h3>
-  <h4>Likes! <%= article.votes.count %></h4>
-  <p><%= article.content %></p>
+  <h2><%= article.title %></h2>
+  <h4>written by: <%= article.author.handle %></h4>
+  Likes! (<%= article.votes.count %>)
+  <p class='content'><%= article.content %></p>
 
   <% if session[:user_id] %>
     <%= render partial:'vote', locals:{article:@article}  %>

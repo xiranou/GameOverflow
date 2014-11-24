@@ -7,7 +7,7 @@
     <% recent_articles.each do |article| %>
       <%= link_to "#{article.title}", article_path(article)%>
         <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>
-        <div class='content_preview'><%= article.content_preview %></div>
+        <div class='content'><%= article.content_preview %></div>
         <br>
     <%end%>
 
@@ -16,7 +16,7 @@
     <% articles.each do |article| %>
       <%= link_to "#{article.title}", article_path(article)%>
         <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>
-        <div class='content_preview'><%= article.content_preview %></div>
+        <div class='content'><%= article.content_preview %></div>
     <%end%>
 
   <% end %>
@@ -27,7 +27,7 @@
     <% popular_articles.each do |article| %>
       <%= link_to "#{article.title}", article_path(article)%>
       <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>
-        <div class='content_preview'><%= article.content_preview %></div>
+        <div class='content'><%= article.content_preview %></div>
         <br>
     <%end%>
   <% end %>

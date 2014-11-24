@@ -3,5 +3,6 @@ class Genre < ActiveRecord::Base
 
   has_many :games
 
-  has_many :articles, as: :discussable
+  has_many :topics, as: :discussable
+  has_many :articles, through: :topics
 end

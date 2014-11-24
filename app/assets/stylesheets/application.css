@@ -17,3 +17,23 @@
  h1, h2, h3, h4, h5, h6 {
  	font-family: 'Press Start 2P', cursive;
  }
+
+a:link {
+	color: #800000;
+    text-decoration: underline;
+}
+
+a:visited {
+	color: #800000;
+    text-decoration: none;
+}
+
+a:hover {
+	color: #CC3300;
+    text-decoration: none;
+}
+
+a:active {
+	color: #CCCCCC;
+    text-decoration: underline;
+}

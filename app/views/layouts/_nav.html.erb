@@ -15,6 +15,7 @@
       <li><%= link_to "Consoles", consoles_path %></li>
       <li><%= link_to "Genres", genres_path %></li>
       <% if session[:user_id] %>
+      <li><%= link_to "My Profile", user_path(session[:user_id]) %></li>
       <li><%= link_to "Log Out", logout_path %></li>
       <% else %>
       <li><%= link_to "Sign Up", signup_path %></li>

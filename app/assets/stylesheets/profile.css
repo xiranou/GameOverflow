@@ -1,27 +1,29 @@
 #profile_container{
 	padding: 100px;
-	padding-top: 0;
 }
 #profile_img{
 	max-width: 200px;
 	max-height: 200px;
 	float: left;
 	margin-right: 20px;
+	padding-top: 50px;
 }
 
 .user_card{
 	margin: 0 auto;
+	background-color: #FFFFFF;
 	border: 2px solid black;
 	border-radius: 40px;
 	padding: 30px;
-	width: 500px;
+/*	width: 500px;*/
 	height: 270px;
 	font-size: 20px;
 	box-shadow: 10px 10px 5px #888888;
+	padding-top: 0;
 }
 
 .user_card h4{
-	font-size: 45px;
+	font-size: 40px;
 }
 
 .user_card p{

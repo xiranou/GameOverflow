@@ -1,6 +1,6 @@
-<p><%= comment.text %></p>
-<h5>by: <%= comment.commenter.handle %></h5>
-<h6>Likes! (<%= comment.votes.count %>)</h6>
+<p class='likes'>Likes! (<%= comment.votes.count %>)</p><br>
+<p class='content'><%= comment.text %></p>
+<h5>by: <%= link_to "#{comment.commenter.handle}", user_path(comment.commenter.id) %></h5>
 
 <% if session[:user_id] %>
   <%= link_to "Reply", article_comment_new_reply_path(comment.article, comment) %>
@@ -8,6 +8,6 @@
 <% end %>
 
 <% if session[:user_id] == comment.commenter.id %>
-  <%= link_to "Edit!", edit_article_comment_path(comment.article, comment) %>
-  <%= link_to "Delete!", article_comment_path(comment.article, comment), method: :delete %>
+  <%= link_to "Edit", edit_article_comment_path(comment.article, comment) %>
+  <%= link_to "Delete", article_comment_path(comment.article, comment), method: :delete %>
 <% end %>

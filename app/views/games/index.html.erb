@@ -1,4 +1,5 @@
 <div class='games'>
+	<h1>Games</h1>
   <ul>
     <% @games.each do |game| %>
       <li><%= link_to "#{game.title}", game_path(game)%></li>

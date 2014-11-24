@@ -10,10 +10,15 @@
 	</div>
 	<br>
 	<br>
-	<h3>Recent Articles<h3>
-		<ul>
-			<% @articles.each do |article|%>
-				<li><%= link_to "#{article.title}", article_path(article) %></li>
-			<% end %>
-		</ul>
+	<h3>Recent Articles</h3>
+	<% if @articles.nil? %>
+		<h6>No Articles!</h6>
+	<% else %>
+	<% @articles.each do |article| %>
+      <%= link_to "#{article.title}", article_path(article)%>
+        <div class="article_info"><%= article.created_at %></div>
+        <div class='content'><%= article.content_preview %></div>
+        <br>
+    <%end%>
+  <% end %>
 </div>

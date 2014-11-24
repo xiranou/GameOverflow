@@ -3,9 +3,9 @@
   <%= f.text_field :title %><br>
   <%= f.label :content %><br>
   <%= f.text_area :content %><br>
-  <%= f.collection_select :topics, Game.all, :title, :title, prompt: "Select a Game!" %> <br>
-  <%= f.collection_select :topics, Genre.all, :name, :name, prompt: "Select a Genre!"%> <br>
-  <%= f.collection_select :topics, Console.all, :name, :name, prompt: "Select a Console!"%> <br>
+  <%= f.collection_select :game_topics, Game.all, :title, :title, prompt: "Select a Game!" %> <br>
+  <%= f.collection_select :genre_topics, Genre.all, :name, :name, prompt: "Select a Genre!"%> <br>
+  <%= f.collection_select :console_topics, Console.all, :name, :name, prompt: "Select a Console!"%> <br>
   <%= f.submit %>
 <% end %>
 

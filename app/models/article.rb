@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.recent
-
+  	self.all.order('created_at DESC').limit(5)
   end
 
   def self.popular

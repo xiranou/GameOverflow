@@ -15,51 +15,7 @@
  *= require home_page
  *= require profile
  *= require styles
+ *= require app
  */
 
-body{
-	font-family: arial;
-}
 
-.jumbotron {
-	background-color: #CCCCCC;
-	padding: 30px;
-}
-
-.content {
-	border: 1px solid black;
-	padding: 10px;
-	padding-bottom: 20px: 
-}
-
-.likes{
-	float: right;
-}
-
-.article_info{
-	font-size: 12px;
-}
-
- h1, h2, h3, h4, h5, h6 {
- 	font-family: 'Press Start 2P', cursive;
- }
-
-a:link {
-	color: #800000;
-    text-decoration: underline;
-}
-
-a:visited {
-	color: #800000;
-    text-decoration: none;
-}
-
-a:hover {
-	color: #CC3300;
-    text-decoration: none;
-}
-
-a:active {
-	color: #FFFFFF;
-    text-decoration: underline;
-}

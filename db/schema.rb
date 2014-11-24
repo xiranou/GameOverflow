@@ -22,11 +22,6 @@ ActiveRecord::Schema.define(version: 20141124003242) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"
-    t.integer  "voteable_id"
-    t.string   "voteable_type"
-    t.integer  "genre_id"
-    t.integer  "game_id"
-    t.integer  "console_id"
   end
 
   create_table "comments", force: true do |t|

@@ -1,8 +1,8 @@
 <div class= "article">
 
   <h2><%= article.title %></h2>
+  <p class='likes'>Likes! (<%= article.votes.count %>)</p>
   <h4>written by: <%= article.author.handle %></h4>
-  Likes! (<%= article.votes.count %>)
   <p class='content'><%= article.content %></p>
 
   <% if session[:user_id] %>

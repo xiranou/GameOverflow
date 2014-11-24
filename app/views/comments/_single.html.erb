@@ -1,6 +1,6 @@
+<p class='likes'>Likes! (<%= comment.votes.count %>)</p><br>
 <p class='content'><%= comment.text %></p>
 <h5>by: <%= comment.commenter.handle %></h5>
-Likes! (<%= comment.votes.count %>)<br>
 
 <% if session[:user_id] %>
   <%= link_to "Reply", article_comment_new_reply_path(comment.article, comment) %>

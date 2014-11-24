@@ -29,6 +29,10 @@ body{
 	padding-bottom: 20px: 
 }
 
+.likes{
+	float: right;
+}
+
 .article_info{
 	font-size: 12px;
 }

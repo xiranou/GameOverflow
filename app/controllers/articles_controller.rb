@@ -73,7 +73,8 @@ class ArticlesController < ApplicationController
     end
 
     if @vote.save
-      count = article.vote_count + 1
+      count = @article.vote_count
+      count +=1
       @article.update_attributes(vote_count: count)
       redirect_to article_path(@article)
     else

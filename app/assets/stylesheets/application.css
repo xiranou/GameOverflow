@@ -14,6 +14,15 @@
  *= require_self
  */
 
+body{
+	font-family: arial;
+}
+
+.jumbotron {
+	background-color: #CCCCCC;
+	padding: 30px;
+}
+
  h1, h2, h3, h4, h5, h6 {
  	font-family: 'Press Start 2P', cursive;
  }
@@ -34,6 +43,6 @@ a:hover {
 }
 
 a:active {
-	color: #CCCCCC;
+	color: #FFFFFF;
     text-decoration: underline;
 }

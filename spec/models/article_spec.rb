@@ -9,8 +9,10 @@ describe Article do
   describe "associations" do
     it { should have_many(:comments)}
     it {should have_many(:votes)}
-    it {should belong_to(:discussable)}
-
     it { should belong_to(:author).class_name("User") }
+
+    it {should belong_to(:game)}
+    it {should belong_to(:console)}
+    it {should belong_to(:genre)}
   end
 end

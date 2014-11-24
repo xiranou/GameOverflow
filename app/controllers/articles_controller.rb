@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
-    render template: "articles/index", locals:{articles: @articles}
+    @articles = Article.recent
+    @popular_articles = Article.popular
+    render template: "articles/index", locals:{articles: @articles, popular_articles: @popular_articles}
   end
 
   def show
@@ -72,6 +73,9 @@ class ArticlesController < ApplicationController
     end
 
     if @vote.save
+      count = @article.vote_count
+      count +=1
+      @article.update_attributes(vote_count: count)
       redirect_to article_path(@article)
     else
       redirect_to article_path(@article)

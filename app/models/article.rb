@@ -9,4 +9,17 @@ class Article < ActiveRecord::Base
   has_one :genre_topic, through: :topics, source_type: "Genre"
   has_one :game_topic, through: :topics, source_type: "Game"
   has_one :console_topic, through: :topics, source_type: "Console"
+
+  def content_preview
+  	self.content.split("")[1..20].join.concat("...")
+  end
+
+  def self.recent
+  	self.all.order('created_at DESC').limit(5)
+  end
+
+  def self.popular
+  	self.all.order('vote_count DESC').limit(5)
+  end
+
 end

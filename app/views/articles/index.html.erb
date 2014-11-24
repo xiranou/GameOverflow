@@ -1,11 +1,24 @@
 <div class='articles'>
+  <h2>Recent Articles</h2>
   <ul>
     <% articles.each do |article| %>
-      <li><%= link_to "#{article.title}", article_path(article)%></li>
+      <li><%= link_to "#{article.title}", article_path(article)%><br>
+      	<%= article.content_preview %></li>
     <%end%>
   </ul>
   <% if session[:user_id] %>
     <%= link_to "New Article", new_article_path %>
+  <% end %>
+
+  <% if @popular_articles %>
+
+  <h2>Popular Articles</h2>
+  <ul>
+    <% popular_articles.each do |article| %>
+      <li><%= link_to "#{article.title}", article_path(article)%><br>
+        <%= article.content_preview %></li>
+    <%end%>
+  </ul>
   <% end %>
 
 </div>

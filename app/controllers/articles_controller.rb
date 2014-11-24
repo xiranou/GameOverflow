@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
+    @articles = Article.recent
     render template: "articles/index", locals:{articles: @articles}
   end
 

@@ -2,7 +2,7 @@
 
   <h2><%= article.title %></h2>
   <p class='likes'>Likes! (<%= article.votes.count %>)</p>
-  <h4>written by: <%= article.author.handle %></h4>
+  <h4>written by: <%= link_to "#{article.author.handle}", user_path(article.author.id) %></h4>
   <p class='content'><%= article.content %></p>
 
   <% if session[:user_id] %>

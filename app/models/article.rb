@@ -11,14 +11,14 @@ class Article < ActiveRecord::Base
   has_one :console_topic, through: :topics, source_type: "Console"
 
   def content_preview
+  	  self.content.split("")[1..20].join.concat("...")
+  end
+
+  def self.recent
 
   end
 
-  def recent
-
-  end
-
-  def popular
+  def self.popular
 
   end
 

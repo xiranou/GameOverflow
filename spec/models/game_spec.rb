@@ -5,6 +5,6 @@ describe Game do
     it {should validate_presence_of(:title)}
     it {should belong_to(:genre)}
     it {should belong_to(:console)}
-    it { should have_many(:articles) }
+    it { should have_many(:topics) }
   end
 end

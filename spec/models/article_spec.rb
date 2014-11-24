@@ -11,8 +11,6 @@ describe Article do
     it {should have_many(:votes)}
     it { should belong_to(:author).class_name("User") }
 
-    it {should belong_to(:game)}
-    it {should belong_to(:console)}
-    it {should belong_to(:genre)}
+    it {should have_many(:topics)}
   end
 end

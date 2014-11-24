@@ -1,6 +1,6 @@
 require 'faker'
 
-User.create(handle: "Faker::Name.first_name", email: "test@gmail.com", password: "test")
+User.create(handle: Faker::Name.first_name, email: "test@gmail.com", password: "test")
 
 user = User.first
 

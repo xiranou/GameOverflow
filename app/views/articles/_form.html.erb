@@ -3,8 +3,11 @@
   <%= f.text_field :title %><br>
   <%= f.label :content %><br>
   <%= f.text_area :content %><br>
+  <%= f.label :games %>
   <%= f.collection_select :topics, Game.all, :title, :title %> <br>
+  <%= f.label :genres %>
   <%= f.collection_select :topics, Genre.all, :name, :name %> <br>
+  <%= f.label :consoles %>
   <%= f.collection_select :topics, Console.all, :name, :name %> <br>
   <%= f.submit %>
 <% end %>

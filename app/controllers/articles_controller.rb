@@ -78,6 +78,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def content_preview
+
+  end
+
+  def recent
+
+  end
+
+  def popular
+
+  end
+
   private
 
   def article_params

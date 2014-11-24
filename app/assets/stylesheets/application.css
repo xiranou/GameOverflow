@@ -23,6 +23,12 @@ body{
 	padding: 30px;
 }
 
+.content_preview {
+	border: solid black;
+	padding: 10px;
+	padding-bottom: 20px: 
+}
+
  h1, h2, h3, h4, h5, h6 {
  	font-family: 'Press Start 2P', cursive;
  }

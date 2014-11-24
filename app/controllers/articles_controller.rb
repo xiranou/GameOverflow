@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.recent
+    @articles = Article.all
+    @recent_articles = Article.recent
     @popular_articles = Article.popular
-    render template: "articles/index", locals:{articles: @articles, popular_articles: @popular_articles}
+    render template: "articles/index", locals:{articles: @articles, recent_articles: @recent_articles, popular_articles: @popular_articles}
   end
 
   def show

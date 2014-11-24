@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.recent
     render template: "articles/index", locals:{articles: @articles}
+    @popular_articles = Article.popular
   end
 
   def show
@@ -72,6 +73,8 @@ class ArticlesController < ApplicationController
     end
 
     if @vote.save
+      count = article.vote_count + 1
+      @article.update_attributes(vote_count: count)
       redirect_to article_path(@article)
     else
       redirect_to article_path(@article)

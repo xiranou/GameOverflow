@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141124010908) do
     t.integer  "author_id"
     t.integer  "voteable_id"
     t.string   "voteable_type"
-    t.integer  "vote_count"
+    t.integer  "vote_count",    default: 0
   end
 
   create_table "comments", force: true do |t|

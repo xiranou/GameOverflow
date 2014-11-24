@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   has_one :console_topic, through: :topics, source_type: "Console"
 
   def content_preview
-  	  self.content.split("")[1..20].join.concat("...")
+  	self.content.split("")[1..20].join.concat("...")
   end
 
   def self.recent
@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.popular
-
+  	
   end
 
 end

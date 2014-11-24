@@ -1,6 +1,6 @@
 <div class='articles'>
   <% if session[:user_id] %>
-    <%= link_to "New Article", new_article_path %>
+    <%= link_to "New Article", new_article_path %><br><br>
   <% end %>
   <% if @recent_articles %>
   <h2>Recent Articles</h2>
@@ -12,7 +12,6 @@
     <%end%>
 
   <% else %>
-  <h2>All Articles</h2>
     <% articles.each do |article| %>
       <%= link_to "#{article.title}", article_path(article)%>
         <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>

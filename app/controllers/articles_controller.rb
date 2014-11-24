@@ -46,6 +46,10 @@ class ArticlesController < ApplicationController
   def create
     @user = User.find(session[:user_id])
     @article = Article.new(article_params)
+    topics = []
+    params[:article][:topics].split(" ").each do |discussable|
+      @article.assign_attributes({topics: Topic.find_or_create_by(discussable: discussable)})
+    end
     @article.assign_attributes({author: @user})
     if @article.save
       redirect_to article_path(@article)

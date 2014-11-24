@@ -12,11 +12,13 @@ consoles.each do |console|
   console.games.create(title: Faker::App.name, genre: Genre.create(name: Faker::Hacker.verb))
 end
 
-discussables = Console.all + Game.all + Genre.all
+consoles = Console.all
+games = Game.all
+genres = Genre.all
 
-discussables.each do |discussable|
+consoles.each do |console|
   rand(1..2).times do
-    Article.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, author: user, discussable: discussable)
+    Article.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, console: console, game: game)
   end
 end
 

@@ -1,4 +1,5 @@
 <div class='consoles'>
+	<h1>Consoles</h1>
   <ul>
     <% @consoles.each do |console| %>
       <li><%= link_to "#{console.name}", console_path(console)%></li>

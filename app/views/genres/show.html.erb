@@ -1,3 +1,4 @@
 <div class="genre">
+	<h1><%= @genre.name %></h1>
   <%= render template: "articles/index", locals:{articles: @genre.articles} %>
 </div>

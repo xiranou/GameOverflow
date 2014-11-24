@@ -2,11 +2,12 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    render template: "articles/index", locals:{articles: @articles}
   end
 
   def show
     @article = Article.find(params[:id])
-    render template: "articles/show", locals:{articles: @articles}
+    render template: "articles/show", locals:{article: @article}
   end
 
   def edit

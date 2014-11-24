@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.popular
-  	
+  	self.all.order('vote_count DESC').limit(5)
   end
 
 end

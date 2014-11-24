@@ -6,6 +6,7 @@
 	max-height: 200px;
 	float: left;
 	margin-right: 20px;
+	padding-top: 50px;
 }
 
 .user_card{
@@ -18,10 +19,11 @@
 	height: 270px;
 	font-size: 20px;
 	box-shadow: 10px 10px 5px #888888;
+	padding-top: 0;
 }
 
 .user_card h4{
-	font-size: 45px;
+	font-size: 40px;
 }
 
 .user_card p{

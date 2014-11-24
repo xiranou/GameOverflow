@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123205654) do
+ActiveRecord::Schema.define(version: 20141124000352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20141123205654) do
     t.integer  "author_id"
     t.integer  "voteable_id"
     t.string   "voteable_type"
+    t.integer  "genre_id"
+    t.integer  "game_id"
+    t.integer  "console_id"
   end
 
   create_table "comments", force: true do |t|

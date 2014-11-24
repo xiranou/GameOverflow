@@ -6,5 +6,6 @@ describe Game do
     it {should belong_to(:genre)}
     it {should belong_to(:console)}
     it { should have_many(:topics) }
+    it { should have_many(:articles) }
   end
 end

@@ -12,8 +12,8 @@ describe Article do
     it { should belong_to(:author).class_name("User") }
 
     it {should have_many(:topics)}
-    it { should have_one(:genre_topic) }
-    it { should have_one(:game_topic) }
-    it { should have_one(:console_topic) }
+    it { should have_many(:genre_topics) }
+    it { should have_many(:game_topics) }
+    it { should have_many(:console_topics) }
   end
 end

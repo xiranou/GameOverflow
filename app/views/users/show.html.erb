@@ -1,13 +1,19 @@
-<img src='/imgs/profile_photo.jpg'>
-<h1><%= @user.handle %></h1>
-<p>Articles Posted: <%= @user.articles.count %><br>
-	Likes: <%= @user.votes.count %><br>
-	Join Date: <%= @user.created_at %><br>
-</p>
-
-<h3>Recent Articles<h3>
-	<ul>
-		<% @articles.each do |article|%>
-			<li><%= link_to "#{article.title}", article_path(article) %></li>
-		<% end %>
-	</ul>
+<div id='profile_container'>
+	<div class='user_card'>
+	<img id='profile_img'src='/imgs/profile_photo.jpg'>
+		<p>
+			<h4><%= @user.handle %></h4>
+			Articles Posted: <%= @user.articles.count %><br>
+			Likes: <%= @user.votes.count %><br>
+			Join Date: <%= @user.created_at %><br>
+		</p>
+	</div>
+	<br>
+	<br>
+	<h3>Recent Articles<h3>
+		<ul>
+			<% @articles.each do |article|%>
+				<li><%= link_to "#{article.title}", article_path(article) %></li>
+			<% end %>
+		</ul>
+</div>

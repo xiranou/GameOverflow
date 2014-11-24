@@ -1,6 +1,7 @@
 require 'faker'
 
-user = User.create(handle: "test", email: "test@gmail.com", password: "test")
+User.create(handle: "test", email: "test@gmail.com", password: "test")
+user = User.first
 
 ["xbox-one","ps4","wii-u"].each do |console|
   Console.find_or_create_by(name: console)
@@ -17,13 +18,9 @@ discussables.each do |discussable|
   Topic.find_or_create_by(discussable: discussable)
 end
 
+topics = Topic.all
 20.times do
-  Article.create(
-    title: Faker::Lorem.word,
-    content: Faker::Lorem.paragraph,
-    author: user,
-    topics: Topic.all
-    )
+  Article.create!(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, author: user, topics: topics.sample(2))
 end
 
 Article.all.each do |article|

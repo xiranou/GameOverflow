@@ -27,7 +27,7 @@
 
       <% if session[:user_id] %>
 
-      <li><%= link_to "My Profile", user_path(session[:user_id]) %></li>
+      <li><span><%= link_to "My Profile", user_path(session[:user_id]) %></span></li>
 
       <li class="user-action"><span><%= link_to "Log Out", logout_path %></span></li>
       <% else %>

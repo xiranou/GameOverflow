@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
 
   def content_preview
-  	  self.content.split("")[1..20].join.concat("...")
+  	self.content.split("")[1..20].join.concat("...")
   end
 
   def self.recent
@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.popular
-
+  	
   end
 
 end

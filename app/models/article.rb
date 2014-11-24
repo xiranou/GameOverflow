@@ -9,4 +9,17 @@ class Article < ActiveRecord::Base
   has_one :genre_topic, through: :topics, source_type: "Genre"
   has_one :game_topic, through: :topics, source_type: "Game"
   has_one :console_topic, through: :topics, source_type: "Console"
+
+  def content_preview
+
+  end
+
+  def recent
+
+  end
+
+  def popular
+
+  end
+
 end

@@ -83,6 +83,7 @@ describe ArticlesController do
 			it "should not update invalid attributes for requested article" do
 				put :update, id: @article, article: attributes_for(:article, title:nil, content:'changing content')
 				@article.reload
+				# Each test should have only one expectation.
 				expect(@article.title).to eq("I LUV GAMES")
 				expect(@article.content).to_not eq('changing content')
 			end

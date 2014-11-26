@@ -21,6 +21,8 @@ class GamesController < ApplicationController
     end
   end
 
+  # Again, at this point there's no way to create a new game.
+  # These actions aren't currently needed.
   def new
     @game = Game.new
   end

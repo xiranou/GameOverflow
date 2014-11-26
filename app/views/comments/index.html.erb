@@ -1,5 +1,7 @@
 <ul class="comments">
   <% comments.each do |comment| %>
+    <%# The work of filtering should be done in the controller.
+    Possibly with a scope from the model. %>
     <% next unless comment.parent_id.nil? %>
     <%= render template: "comments/show", locals:{comment: comment}, layout: false %>
   <% end %>

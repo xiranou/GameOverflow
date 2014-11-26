@@ -3,7 +3,7 @@
     <%= link_to "New Article", new_article_path %><br><br>
   <% end %>
   <% if @recent_articles %>
-  <h2>Recent Articles</h2>
+    <h2>Recent Articles</h2>
     <% recent_articles.each do |article| %>
       <%= link_to "#{article.title}", article_path(article)%>
         <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>
@@ -13,7 +13,11 @@
 
   <% else %>
     <% articles.each do |article| %>
+      <%# There's no need to interpolate here %>
       <%= link_to "#{article.title}", article_path(article)%>
+        <%# This byline code seems like something that should be factored out
+            either into the class or a helper method.
+        %>
         <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>
         <div class='content'><%= article.content_preview %></div>
     <%end%>
@@ -22,12 +26,13 @@
 
   <% if @popular_articles %>
 
-  <h2>Popular Articles</h2>
+    <h2>Popular Articles</h2>
     <% popular_articles.each do |article| %>
+      <%# There's no need to interpolate here %>
       <%= link_to "#{article.title}", article_path(article)%>
       <div class="article_info">posted by: <%= article.author.handle %> on <%= article.created_at %></div>
-        <div class='content'><%= article.content_preview %></div>
-        <br>
+      <div class='content'><%= article.content_preview %></div>
+      <br>
     <%end%>
   <% end %>
 

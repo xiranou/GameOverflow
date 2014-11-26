@@ -76,6 +76,8 @@ class CommentsController < ApplicationController
   end
 
   def reply
+    # If you permit these in strong params, you'll no longer need
+    # the following three lines of code. Think about it. ;)
     @user = User.find(session[:user_id])
     @article = Article.find(params[:article_id])
     @parent = Comment.find(params[:comment_id])
@@ -91,6 +93,8 @@ class CommentsController < ApplicationController
 
   def vote
     if session[:user_id]
+      # If you permit these in strong params, you'll no longer need
+      # the following three lines of code.
       @user = User.find(session[:user_id])
       @article = Article.find(params[:article_id])
       @comment = Comment.find(params[:comment_id])

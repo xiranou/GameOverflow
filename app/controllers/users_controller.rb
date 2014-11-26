@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @articles = @user.articles[-5..-1]
+    # Don't push commented out code to master.
     # @votes = Vote.find_by(voter_id: @user.id)
   end
 

@@ -24,6 +24,10 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if session[:user_id] == @article.author.id
       @article.assign_attributes(article_params)
+      # You use find_or_create_by here, but right now your views
+      # don't allow for new games / genres / topics to be created.
+      # Wouldn't it be easier just to pass in ids and set these
+      # relationships using your associations?
       @game = Game.find_or_create_by(title: params[:article][:game_topics])
       @genre = Genre.find_or_create_by(name: params[:article][:genre_topics])
       @console = Console.find_or_create_by(name: params[:article][:console_topics])

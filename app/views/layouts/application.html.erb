@@ -7,14 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header>
-  <%= render partial: "layouts/nav" %>
-</header>
+  <header>
+    <%= render partial: "layouts/nav" %>
+  </header>
 
-<div class="jumbotron">
-  <%= yield %>
-</div>
-<%= render partial: "layouts/footer" %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <div class="jumbotron">
+    <%= yield %>
+  </div>
+  <%= render partial: "layouts/footer" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

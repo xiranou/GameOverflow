@@ -22,6 +22,8 @@ class ConsolesController < ApplicationController
     end
   end
 
+  # At this point there is no way to create a new console.
+  # Don't push code that's not being used to master.
   def new
     @console = Console.new
   end
@@ -42,7 +44,4 @@ class ConsolesController < ApplicationController
   def console_params
     params.require(:console).permit(:name)
   end
-
-
-
 end

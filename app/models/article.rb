@@ -14,6 +14,7 @@ class Article < ActiveRecord::Base
   	self.content.split("")[1..20].join.concat("...")
   end
 
+  # Check out how to create scopes with AR.
   def self.recent
   	self.all.order('created_at DESC').limit(5)
   end

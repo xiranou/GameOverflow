@@ -2,4 +2,4 @@
 
 #GameOverflow
 
-An app for gamers to create posts and comments on a specific game, genre, or game console.
+GameOverflow is a web application that revolves around gaming. Users can create a profile, post articles on any game, genre, or console, and comment as well as vote on other user's content.
